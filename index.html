@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mina · Istanbul — Liquid Glass Cafe</title>
+    <title>Mina · Istanbul</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
         /* ============================================================
-               ROOT VARIABLES & RESET
-               ============================================================ */
+           ROOT VARIABLES & RESET
+           ============================================================ */
         *,
         *::before,
         *::after {
@@ -20,24 +20,27 @@
         }
 
         :root {
-            --bg-start: #f5f0eb;
-            --bg-end: #fff8f4;
-            --text-primary: #1e1917;
-            --text-secondary: rgba(30, 25, 23, 0.65);
-            --text-tertiary: rgba(30, 25, 23, 0.4);
-            --pink: #f9d0d4;
-            --pink-light: #ffe8ea;
-            --mint: #d5ebe4;
+            --bg-start: #fff5f3;
+            --bg-end: #ffffff;
+            --text-primary: #2c2421;
+            --text-secondary: rgba(44, 36, 33, 0.65);
+            --text-tertiary: rgba(44, 36, 33, 0.4);
+
+            /* Brand Colors */
+            --color-pink: #ffb6bd;
+            --color-peach: #ffd7d5;
+            --color-cream: #ffeeb6;
+            --color-blue: #afdcf1;
+
             --glass-bg: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.38);
+            --glass-border: rgba(255, 255, 255, 0.35);
             --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.04);
-            --glass-shadow-hover: 0 20px 70px rgba(0, 0, 0, 0.07);
+            --glass-shadow-hover: 0 20px 70px rgba(0, 0, 0, 0.06);
             --radius-sm: 14px;
             --radius-md: 24px;
             --radius-lg: 32px;
             --radius-xl: 48px;
             --transition-smooth: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             --font: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
@@ -57,13 +60,13 @@
         }
 
         /* ============================================================
-               LOADING SCREEN
-               ============================================================ */
+           LOADING SCREEN
+           ============================================================ */
         #loader {
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: linear-gradient(145deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            background: var(--bg-start);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -81,10 +84,10 @@
             width: 72px;
             height: 72px;
             border-radius: 50%;
-            background: conic-gradient(from 0deg, var(--pink), var(--mint), var(--pink));
+            background: conic-gradient(from 0deg, var(--color-pink), var(--color-blue), var(--color-cream), var(--color-pink));
             animation: loaderSpin 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
             position: relative;
-            box-shadow: 0 0 60px rgba(249, 208, 212, 0.2);
+            box-shadow: 0 0 60px rgba(255, 182, 189, 0.3);
         }
 
         .loader-ring::after {
@@ -103,6 +106,7 @@
             text-transform: uppercase;
             opacity: 0.4;
             animation: loaderPulse 1.6s ease-in-out infinite;
+            color: var(--text-primary);
         }
 
         @keyframes loaderSpin {
@@ -128,8 +132,8 @@
         }
 
         /* ============================================================
-               AMBIENT GLOW BLOBS
-               ============================================================ */
+           AMBIENT GLOW BLOBS
+           ============================================================ */
         .bg-blob {
             position: fixed;
             border-radius: 50%;
@@ -143,7 +147,7 @@
         .blob-1 {
             width: 560px;
             height: 560px;
-            background: var(--pink);
+            background: var(--color-pink);
             top: -200px;
             left: -200px;
             animation: floatBlob1 22s ease-in-out infinite alternate;
@@ -152,7 +156,7 @@
         .blob-2 {
             width: 500px;
             height: 500px;
-            background: var(--mint);
+            background: var(--color-blue);
             right: -180px;
             top: 15%;
             animation: floatBlob2 26s ease-in-out infinite alternate-reverse;
@@ -161,7 +165,7 @@
         .blob-3 {
             width: 420px;
             height: 420px;
-            background: rgba(255, 255, 255, 0.5);
+            background: var(--color-cream);
             bottom: -140px;
             left: 25%;
             animation: floatBlob3 20s ease-in-out infinite alternate;
@@ -193,10 +197,10 @@
         }
 
         /* ============================================================
-               LIQUID GLASS CORE — iOS 26 style
-               ============================================================ */
+           LIQUID GLASS CORE
+           ============================================================ */
         .glass {
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(36px) saturate(180%);
             -webkit-backdrop-filter: blur(36px) saturate(180%);
             border: 1px solid var(--glass-border);
@@ -267,8 +271,8 @@
         }
 
         /* ============================================================
-               LIQUID GLASS BUTTONS — Apple WWDC 2026 style
-               ============================================================ */
+           LIQUID GLASS BUTTONS
+           ============================================================ */
         .liquid-btn {
             position: relative;
             display: inline-flex;
@@ -296,7 +300,6 @@
             gap: 8px;
         }
 
-        /* Primary glossy reflection */
         .liquid-btn::before {
             content: '';
             position: absolute;
@@ -326,7 +329,6 @@
             }
         }
 
-        /* Top gloss overlay */
         .liquid-btn::after {
             content: '';
             position: absolute;
@@ -364,17 +366,25 @@
         }
 
         .liquid-btn.primary {
-            background: linear-gradient(135deg, var(--pink) 0%, var(--pink-light) 100%);
-            border-color: rgba(249, 208, 212, 0.5);
+            background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-peach) 100%);
+            border-color: rgba(255, 182, 189, 0.5);
             color: var(--text-primary);
             box-shadow:
                 inset 0 1px 1px rgba(255, 255, 255, 0.7),
-                0 8px 32px rgba(249, 208, 212, 0.2);
+                0 8px 32px rgba(255, 182, 189, 0.25);
         }
 
         .liquid-btn.primary::after {
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
             opacity: 0.6;
+        }
+
+        .liquid-btn.secondary {
+            background: linear-gradient(135deg, var(--color-blue) 0%, #c5e8f5 100%);
+            border-color: rgba(175, 220, 241, 0.5);
+            box-shadow:
+                inset 0 1px 1px rgba(255, 255, 255, 0.7),
+                0 8px 32px rgba(175, 220, 241, 0.25);
         }
 
         .liquid-btn.small {
@@ -383,8 +393,8 @@
         }
 
         /* ============================================================
-               NAVBAR
-               ============================================================ */
+           NAVBAR
+           ============================================================ */
         .navbar {
             max-width: 1280px;
             margin: 24px auto 0;
@@ -396,10 +406,10 @@
             position: sticky;
             top: 20px;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 215, 213, 0.2);
             backdrop-filter: blur(40px) saturate(200%);
             -webkit-backdrop-filter: blur(40px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 215, 213, 0.4);
             box-shadow:
                 inset 0 1px 1px rgba(255, 255, 255, 0.5),
                 0 8px 36px rgba(0, 0, 0, 0.04);
@@ -407,18 +417,18 @@
         }
 
         .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 215, 213, 0.5);
             backdrop-filter: blur(52px) saturate(220%);
             -webkit-backdrop-filter: blur(52px) saturate(220%);
             box-shadow: 0 8px 48px rgba(0, 0, 0, 0.06);
-            border-color: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 215, 213, 0.6);
         }
 
         .logo {
             font-size: 2rem;
             font-weight: 900;
             letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #1e1917 35%, #5a4a42 85%);
+            background: linear-gradient(135deg, #2c2421 35%, #6b5a52 85%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -476,8 +486,8 @@
         }
 
         /* ============================================================
-               HERO SECTION
-               ============================================================ */
+           HERO SECTION
+           ============================================================ */
         .hero {
             max-width: 1280px;
             margin: 40px auto 20px;
@@ -501,10 +511,10 @@
             gap: 10px;
             padding: 8px 22px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 238, 182, 0.4);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(255, 238, 182, 0.5);
             font-size: 0.78rem;
             font-weight: 600;
             letter-spacing: 0.02em;
@@ -517,9 +527,9 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #4caf84;
+            background: var(--color-pink);
             display: inline-block;
-            box-shadow: 0 0 16px rgba(76, 175, 132, 0.35);
+            box-shadow: 0 0 16px rgba(255, 182, 189, 0.5);
             animation: pulseDot 2.2s ease-in-out infinite;
         }
 
@@ -540,7 +550,7 @@
             font-weight: 900;
             line-height: 0.92;
             letter-spacing: -0.04em;
-            background: linear-gradient(145deg, #1e1917 25%, #5a4a42 75%);
+            background: linear-gradient(145deg, #2c2421 25%, #6b5a52 75%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -562,106 +572,113 @@
             margin-top: 6px;
         }
 
-        /* Hero visual */
+        /* Hero Abstract Graphic */
         .hero-visual {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
 
-        .hero-glass-sphere {
-            width: 380px;
-            height: 380px;
-            border-radius: 50%;
+        .hero-graphic {
+            width: 400px;
+            height: 400px;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 7.5rem;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(48px) saturate(180%);
-            -webkit-backdrop-filter: blur(48px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .hero-graphic .circle {
+            position: absolute;
+            border-radius: 50%;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+            animation: floatGraphic 8s ease-in-out infinite;
+        }
+
+        .hero-graphic .circle-1 {
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 182, 189, 0.3);
+            top: 20px;
+            left: 20px;
+            animation-delay: 0s;
+        }
+
+        .hero-graphic .circle-2 {
+            width: 140px;
+            height: 140px;
+            background: rgba(175, 220, 241, 0.3);
+            bottom: 40px;
+            right: 30px;
+            animation-delay: -2s;
+        }
+
+        .hero-graphic .circle-3 {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 238, 182, 0.4);
+            bottom: 80px;
+            left: 10px;
+            animation-delay: -4s;
+        }
+
+        .hero-graphic .circle-4 {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 215, 213, 0.5);
+            top: 30px;
+            right: 20px;
+            animation-delay: -1s;
+        }
+
+        .hero-graphic .center-circle {
+            width: 160px;
+            height: 160px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow:
-                inset 0 1px 1px rgba(255, 255, 255, 0.5),
-                0 24px 72px rgba(0, 0, 0, 0.03),
-                0 8px 36px rgba(0, 0, 0, 0.02);
-            animation: floatSphere 9s ease-in-out infinite;
-            position: relative;
-            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-            will-change: transform;
-        }
-
-        .hero-glass-sphere:hover {
-            transform: scale(1.04) rotate(-2deg);
-        }
-
-        .hero-glass-sphere::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255, 255, 255, 0.25) 0%, transparent 60%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .hero-glass-sphere:hover::before {
-            opacity: 1;
-        }
-
-        .hero-glass-sphere .sphere-inner {
-            position: relative;
-            z-index: 2;
+                inset 0 1px 1px rgba(255, 255, 255, 0.6),
+                0 20px 60px rgba(0, 0, 0, 0.04);
+            z-index: 10;
+            animation: floatCenter 10s ease-in-out infinite;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            height: 100%;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
         }
 
-        .hero-glass-sphere .sphere-emoji {
-            font-size: 7.5rem;
-            line-height: 1;
-            filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.04));
-        }
-
-        /* Ring pulse */
-        .hero-glass-sphere::after {
-            content: '';
-            position: absolute;
-            inset: 12px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            pointer-events: none;
-            animation: ringPulse 5s ease-in-out infinite;
-        }
-
-        @keyframes ringPulse {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.4;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 0.1;
-            }
-        }
-
-        @keyframes floatSphere {
+        @keyframes floatGraphic {
             0%,
             100% {
                 transform: translateY(0px);
             }
             50% {
-                transform: translateY(-16px);
+                transform: translateY(-14px);
+            }
+        }
+
+        @keyframes floatCenter {
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.02);
             }
         }
 
         /* ============================================================
-               SECTIONS
-               ============================================================ */
+           SECTIONS
+           ============================================================ */
         section {
             max-width: 1280px;
             margin: 100px auto;
@@ -677,7 +694,7 @@
             font-size: 3.2rem;
             font-weight: 800;
             letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #1e1917 30%, #5a4a42 80%);
+            background: linear-gradient(135deg, #2c2421 30%, #6b5a52 80%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -692,8 +709,8 @@
         }
 
         /* ============================================================
-               MENU GRID
-               ============================================================ */
+           MENU GRID
+           ============================================================ */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -703,10 +720,10 @@
         .menu-card {
             border-radius: var(--radius-lg);
             padding: 34px 30px 30px;
-            background: rgba(255, 255, 255, 0.14);
+            background: rgba(255, 215, 213, 0.12);
             backdrop-filter: blur(32px) saturate(180%);
             -webkit-backdrop-filter: blur(32px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 215, 213, 0.25);
             box-shadow:
                 inset 0 1px 1px rgba(255, 255, 255, 0.4),
                 0 8px 36px rgba(0, 0, 0, 0.03);
@@ -763,18 +780,89 @@
         }
 
         /* ============================================================
-               ABOUT / LOCATION / CONTACT
-               ============================================================ */
+           RESERVATION FORM
+           ============================================================ */
+        .reservation-card {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 44px 48px;
+            border-radius: var(--radius-lg);
+            background: rgba(255, 215, 213, 0.12);
+            backdrop-filter: blur(32px) saturate(180%);
+            -webkit-backdrop-filter: blur(32px) saturate(180%);
+            border: 1px solid rgba(255, 215, 213, 0.25);
+            box-shadow:
+                inset 0 1px 1px rgba(255, 255, 255, 0.4),
+                0 8px 36px rgba(0, 0, 0, 0.03);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            opacity: 0.7;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 215, 213, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            font-family: var(--font);
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--color-pink);
+            box-shadow: 0 0 0 4px rgba(255, 182, 189, 0.15);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-submit {
+            width: 100%;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        /* ============================================================
+           ABOUT / LOCATION
+           ============================================================ */
         .about-card,
         .info-card {
             max-width: 840px;
             margin: 0 auto;
             padding: 44px 48px;
             border-radius: var(--radius-lg);
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 215, 213, 0.1);
             backdrop-filter: blur(32px) saturate(180%);
             -webkit-backdrop-filter: blur(32px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 215, 213, 0.2);
             box-shadow:
                 inset 0 1px 1px rgba(255, 255, 255, 0.4),
                 0 8px 36px rgba(0, 0, 0, 0.03);
@@ -787,10 +875,6 @@
             opacity: 0.75;
         }
 
-        .about-card p:last-of-type {
-            margin-bottom: 0;
-        }
-
         .tag-group {
             display: flex;
             flex-wrap: wrap;
@@ -801,10 +885,10 @@
         .tag-group span {
             padding: 8px 22px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 238, 182, 0.25);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 238, 182, 0.3);
             font-size: 0.82rem;
             font-weight: 500;
             letter-spacing: 0.01em;
@@ -833,8 +917,8 @@
         }
 
         /* ============================================================
-               FOOTER
-               ============================================================ */
+           FOOTER
+           ============================================================ */
         .footer {
             max-width: 1280px;
             margin: 80px auto 32px;
@@ -845,17 +929,13 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 16px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 215, 213, 0.1);
             backdrop-filter: blur(28px) saturate(180%);
             -webkit-backdrop-filter: blur(28px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 215, 213, 0.2);
             box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
             font-size: 0.88rem;
             opacity: 0.6;
-        }
-
-        .footer p {
-            transition: opacity 0.3s ease;
         }
 
         .footer p:hover {
@@ -863,8 +943,8 @@
         }
 
         /* ============================================================
-               SCROLL REVEAL
-               ============================================================ */
+           SCROLL REVEAL
+           ============================================================ */
         .reveal {
             opacity: 0;
             transform: translateY(44px) scale(0.97);
@@ -890,21 +970,44 @@
         .reveal-d4 {
             transition-delay: 0.30s;
         }
-        .reveal-d5 {
-            transition-delay: 0.38s;
-        }
 
         /* ============================================================
-               PARALLAX LAYER
-               ============================================================ */
-        .parallax-layer {
+           FALLING STARS
+           ============================================================ */
+        .star {
+            position: fixed;
+            top: -20px;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 1.2rem;
+            animation: fall linear infinite;
+            opacity: 0;
             will-change: transform;
-            transition: transform 0.08s ease-out;
+            color: var(--color-cream);
+            text-shadow: 0 0 12px rgba(255, 238, 182, 0.4);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.6);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(5vh) rotate(30deg) scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(0.4);
+                opacity: 0;
+            }
         }
 
         /* ============================================================
-               SCROLLBAR
-               ============================================================ */
+           SCROLLBAR
+           ============================================================ */
         ::-webkit-scrollbar {
             width: 7px;
         }
@@ -914,29 +1017,38 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(30, 25, 23, 0.12);
+            background: rgba(44, 36, 33, 0.12);
             border-radius: 999px;
             transition: background 0.3s ease;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(30, 25, 23, 0.22);
+            background: rgba(44, 36, 33, 0.22);
         }
 
         /* ============================================================
-               RESPONSIVE
-               ============================================================ */
+           RESPONSIVE
+           ============================================================ */
         @media (max-width: 1100px) {
             .hero h1 {
                 font-size: 4.2rem;
             }
-            .hero-glass-sphere {
-                width: 300px;
-                height: 300px;
-                font-size: 5.6rem;
+            .hero-graphic {
+                width: 320px;
+                height: 320px;
             }
-            .hero-glass-sphere .sphere-emoji {
-                font-size: 5.6rem;
+            .hero-graphic .circle-1 {
+                width: 160px;
+                height: 160px;
+            }
+            .hero-graphic .circle-2 {
+                width: 110px;
+                height: 110px;
+            }
+            .hero-graphic .center-circle {
+                width: 130px;
+                height: 130px;
+                font-size: 2.8rem;
             }
         }
 
@@ -966,13 +1078,30 @@
                 font-size: 3.4rem;
             }
 
-            .hero-glass-sphere {
-                width: 220px;
-                height: 220px;
-                font-size: 4rem;
+            .hero-graphic {
+                width: 280px;
+                height: 280px;
             }
-            .hero-glass-sphere .sphere-emoji {
-                font-size: 4rem;
+            .hero-graphic .circle-1 {
+                width: 140px;
+                height: 140px;
+            }
+            .hero-graphic .circle-2 {
+                width: 100px;
+                height: 100px;
+            }
+            .hero-graphic .circle-3 {
+                width: 80px;
+                height: 80px;
+            }
+            .hero-graphic .circle-4 {
+                width: 60px;
+                height: 60px;
+            }
+            .hero-graphic .center-circle {
+                width: 110px;
+                height: 110px;
+                font-size: 2.2rem;
             }
 
             .navbar {
@@ -1008,8 +1137,14 @@
             }
 
             .about-card,
-            .info-card {
+            .info-card,
+            .reservation-card {
                 padding: 28px 22px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
             }
 
             .footer {
@@ -1034,13 +1169,30 @@
             .hero h1 {
                 font-size: 2.6rem;
             }
-            .hero-glass-sphere {
-                width: 170px;
-                height: 170px;
-                font-size: 3.2rem;
+            .hero-graphic {
+                width: 220px;
+                height: 220px;
             }
-            .hero-glass-sphere .sphere-emoji {
-                font-size: 3.2rem;
+            .hero-graphic .circle-1 {
+                width: 110px;
+                height: 110px;
+            }
+            .hero-graphic .circle-2 {
+                width: 80px;
+                height: 80px;
+            }
+            .hero-graphic .circle-3 {
+                width: 60px;
+                height: 60px;
+            }
+            .hero-graphic .circle-4 {
+                width: 50px;
+                height: 50px;
+            }
+            .hero-graphic .center-circle {
+                width: 90px;
+                height: 90px;
+                font-size: 1.8rem;
             }
             .menu-grid {
                 grid-template-columns: 1fr;
@@ -1067,7 +1219,8 @@
                 padding: 24px 20px;
             }
             .about-card,
-            .info-card {
+            .info-card,
+            .reservation-card {
                 padding: 22px 18px;
             }
             .about-card p {
@@ -1076,8 +1229,8 @@
         }
 
         /* ============================================================
-               REDUCED MOTION PREFERENCE
-               ============================================================ */
+           REDUCED MOTION PREFERENCE
+           ============================================================ */
         @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
@@ -1090,16 +1243,17 @@
                 opacity: 1 !important;
                 transform: none !important;
             }
-            .parallax-layer {
-                transform: none !important;
-            }
-            .hero-glass-sphere {
+            .hero-graphic .circle,
+            .hero-graphic .center-circle {
                 animation: none !important;
             }
             .bg-blob {
                 animation: none !important;
             }
             #loader {
+                display: none !important;
+            }
+            .star {
                 display: none !important;
             }
         }
@@ -1133,6 +1287,7 @@
         <ul>
             <li><a href="#menu">Menu</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#reservation">Reserve</a></li>
             <li><a href="#location">Location</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1151,14 +1306,16 @@
             <p class="reveal reveal-d2">Handcrafted macarons, artisan coffee, and cozy mornings in the heart of Istanbul.</p>
             <div class="hero-actions reveal reveal-d3">
                 <a href="#menu" class="liquid-btn primary">Explore Menu</a>
-                <a href="#about" class="liquid-btn">Our Story</a>
+                <a href="#reservation" class="liquid-btn secondary">Reserve a Table</a>
             </div>
         </div>
-        <div class="hero-visual reveal reveal-d2 parallax-layer" data-parallax-speed="0.035">
-            <div class="hero-glass-sphere glass-sweep" role="img" aria-label="Macaron illustration">
-                <div class="sphere-inner">
-                    <span class="sphere-emoji">🥥</span>
-                </div>
+        <div class="hero-visual reveal reveal-d2">
+            <div class="hero-graphic">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+                <div class="circle circle-4"></div>
+                <div class="center-circle glass">M</div>
             </div>
         </div>
     </section>
@@ -1236,6 +1393,45 @@
     </section>
 
     <!-- ============================================================
+    RESERVATION (WhatsApp)
+    ============================================================ -->
+    <section id="reservation" aria-labelledby="reservation-title">
+        <div class="section-header reveal">
+            <h2 id="reservation-title">Reserve a Table</h2>
+            <p>We'll confirm your booking via WhatsApp.</p>
+        </div>
+        <div class="reservation-card glass glass-sweep reveal reveal-d1">
+            <form id="reservation-form">
+                <div class="form-group">
+                    <label for="res-name">Your Name</label>
+                    <input type="text" id="res-name" placeholder="e.g. Mina" required />
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="res-date">Date</label>
+                        <input type="date" id="res-date" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="res-time">Time</label>
+                        <input type="time" id="res-time" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="res-guests">Number of Guests</label>
+                    <input type="number" id="res-guests" placeholder="2" min="1" max="20" required />
+                </div>
+                <div class="form-group">
+                    <label for="res-message">Special Requests</label>
+                    <textarea id="res-message" placeholder="Any allergies, celebrations, or preferences..."></textarea>
+                </div>
+                <button type="submit" class="liquid-btn primary form-submit">
+                    Send via WhatsApp
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============================================================
     ABOUT
     ============================================================ -->
     <section id="about" aria-labelledby="about-title">
@@ -1293,7 +1489,7 @@
     </footer>
 
     <!-- ============================================================
-    JAVASCRIPT — Complete Interactive Experience
+    JAVASCRIPT
     ============================================================ -->
     <script>
         (function() {
@@ -1306,20 +1502,16 @@
 
             function hideLoader() {
                 loader.classList.add('hidden');
-                // Ensure loader is hidden after transition
                 setTimeout(function() {
                     loader.style.display = 'none';
                 }, 900);
             }
 
-            // Hide loader when page is fully loaded
             if (document.readyState === 'complete') {
                 hideLoader();
             } else {
                 window.addEventListener('load', hideLoader);
             }
-
-            // Fallback: hide after 2.5s max
             setTimeout(hideLoader, 2500);
 
             // ——————————————————————————————————————————————
@@ -1349,7 +1541,7 @@
             updateNavbar();
 
             // ——————————————————————————————————————————————
-            // 3. SCROLL REVEAL (Intersection Observer)
+            // 3. SCROLL REVEAL
             // ——————————————————————————————————————————————
             const revealEls = document.querySelectorAll('.reveal');
 
@@ -1358,8 +1550,6 @@
                     entries.forEach(function(entry) {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('visible');
-                            // Optionally unobserve after reveal for performance
-                            // revealObserver.unobserve(entry.target);
                         }
                     });
                 }, {
@@ -1371,68 +1561,15 @@
                     revealObserver.observe(el);
                 });
             } else {
-                // Fallback: show all immediately
                 revealEls.forEach(function(el) {
                     el.classList.add('visible');
                 });
             }
 
             // ——————————————————————————————————————————————
-            // 4. PARALLAX
+            // 4. LIQUID GLASS MOUSE FOLLOW
             // ——————————————————————————————————————————————
-            const parallaxEl = document.querySelector('.parallax-layer');
-            if (parallaxEl) {
-                const speed = parseFloat(parallaxEl.dataset.parallaxSpeed) || 0.035;
-                let lastScrollY = window.scrollY;
-                let rafId = null;
-
-                function updateParallax() {
-                    const scrollY = window.scrollY;
-                    const offset = scrollY * speed;
-                    parallaxEl.style.transform = 'translateY(' + offset + 'px)';
-                    lastScrollY = scrollY;
-                }
-
-                function onParallaxScroll() {
-                    if (rafId) return;
-                    rafId = window.requestAnimationFrame(function() {
-                        updateParallax();
-                        rafId = null;
-                    });
-                }
-
-                window.addEventListener('scroll', onParallaxScroll, { passive: true });
-                // Initial position
-                updateParallax();
-            }
-
-            // ——————————————————————————————————————————————
-            // 5. SMOOTH ANCHOR SCROLL
-            // ——————————————————————————————————————————————
-            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-                anchor.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    const targetEl = document.querySelector(targetId);
-                    if (targetEl) {
-                        e.preventDefault();
-                        const offsetTop = targetEl.getBoundingClientRect().top + window.pageYOffset - 80;
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                        // Update URL without jump
-                        if (history.pushState) {
-                            history.pushState(null, null, targetId);
-                        }
-                    }
-                });
-            });
-
-            // ——————————————————————————————————————————————
-            // 6. LIQUID GLASS MOUSE FOLLOW (glow highlight)
-            // ——————————————————————————————————————————————
-            const glassEls = document.querySelectorAll('.glass, .menu-card, .about-card, .info-card, .hero-glass-sphere');
+            const glassEls = document.querySelectorAll('.glass, .menu-card, .about-card, .info-card, .reservation-card, .hero-graphic .center-circle');
 
             glassEls.forEach(function(el) {
                 el.addEventListener('mousemove', function(e) {
@@ -1445,10 +1582,9 @@
             });
 
             // ——————————————————————————————————————————————
-            // 7. BUTTON TACTILE FEEDBACK (iOS-style)
+            // 5. BUTTON TACTILE FEEDBACK
             // ——————————————————————————————————————————————
             document.querySelectorAll('.liquid-btn').forEach(function(btn) {
-                // Mouse
                 btn.addEventListener('mousedown', function() {
                     this.style.transition = 'transform 0.12s cubic-bezier(0.22, 1, 0.36, 1)';
                     this.style.transform = 'scale(0.95)';
@@ -1462,7 +1598,6 @@
                     this.style.transform = '';
                 });
 
-                // Touch
                 btn.addEventListener('touchstart', function() {
                     this.style.transition = 'transform 0.12s cubic-bezier(0.22, 1, 0.36, 1)';
                     this.style.transform = 'scale(0.95)';
@@ -1478,24 +1613,89 @@
             });
 
             // ——————————————————————————————————————————————
-            // 8. PERFORMANCE: reduce animations when not visible
+            // 6. WHATSAPP RESERVATION FORM
             // ——————————————————————————————————————————————
-            if ('IntersectionObserver' in window) {
-                const animatedEls = document.querySelectorAll('.glass-sweep, .bg-blob, .hero-glass-sphere');
-                const animObserver = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.style.animationPlayState = 'running';
-                        } else {
-                            entry.target.style.animationPlayState = 'paused';
-                        }
-                    });
-                }, { threshold: 0.05 });
+            const form = document.getElementById('reservation-form');
 
-                animatedEls.forEach(function(el) {
-                    animObserver.observe(el);
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('res-name').value.trim();
+                const date = document.getElementById('res-date').value;
+                const time = document.getElementById('res-time').value;
+                const guests = document.getElementById('res-guests').value;
+                const message = document.getElementById('res-message').value.trim();
+
+                if (!name || !date || !time || !guests) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // Format date
+                const dateObj = new Date(date);
+                const formattedDate = dateObj.toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
                 });
+
+                // Build WhatsApp message
+                let whatsappMsg = `Reservation Request - Mina Istanbul%0A%0A`;
+                whatsappMsg += `Name: ${encodeURIComponent(name)}%0A`;
+                whatsappMsg += `Date: ${encodeURIComponent(formattedDate)}%0A`;
+                whatsappMsg += `Time: ${encodeURIComponent(time)}%0A`;
+                whatsappMsg += `Guests: ${encodeURIComponent(guests)}%0A`;
+                if (message) {
+                    whatsappMsg += `Special Requests: ${encodeURIComponent(message)}%0A`;
+                }
+                whatsappMsg += `%0AThank you!`;
+
+                const phoneNumber = '905551234567'; // Replace with actual number
+                const url = `https://wa.me/${phoneNumber}?text=${whatsappMsg}`;
+
+                window.open(url, '_blank');
+            });
+
+            // ——————————————————————————————————————————————
+            // 7. FALLING STARS (✨)
+            // ——————————————————————————————————————————————
+            const starCount = 28;
+            const starContainer = document.body;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.textContent = '✨';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.fontSize = (Math.random() * 1.2 + 0.6) + 'rem';
+                star.style.animationDuration = (Math.random() * 8 + 6) + 's';
+                star.style.animationDelay = (Math.random() * 12) + 's';
+                star.style.opacity = Math.random() * 0.6 + 0.2;
+                starContainer.appendChild(star);
             }
+
+            // ——————————————————————————————————————————————
+            // 8. SMOOTH ANCHOR SCROLL
+            // ——————————————————————————————————————————————
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        const offsetTop = targetEl.getBoundingClientRect().top + window.pageYOffset - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                        if (history.pushState) {
+                            history.pushState(null, null, targetId);
+                        }
+                    }
+                });
+            });
 
             console.log('🍮 Mina · Liquid Glass experience loaded');
         })();
