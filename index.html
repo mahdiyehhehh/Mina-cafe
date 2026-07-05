@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Mina · cafe istanbul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Mina · Istanbul | macaron cafe</title>
   <style>
     * {
       margin: 0;
@@ -15,247 +15,293 @@
       background: #F8F4E8;
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       color: #775C56;
-      line-height: 1.4;
+      line-height: 1.5;
       padding: 0 0 2rem 0;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
-    /* main wrapper */
     .app {
-      max-width: 600px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 1rem 1.2rem 2rem;
+      padding: 1rem 1.5rem 2rem;
       width: 100%;
-      flex: 1;
     }
 
-    /* color palette variables */
+    /* palette */
     :root {
       --pink: #FFD3D4;
       --mint: #D5EBE4;
       --cream: #F8F4E8;
       --brown: #775C56;
+      --glass: rgba(255, 255, 255, 0.4);
     }
 
-    /* header / nav */
+    /* ---- glass / liquid buttons (50% liquid) ---- */
+    .liquid-btn, .cta-primary, .cta-secondary, .buy-btn, .nav a, .menu-tab {
+      position: relative;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px) saturate(180%);
+      -webkit-backdrop-filter: blur(8px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 16px rgba(119, 92, 86, 0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+      transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+      border-radius: 60px;
+      color: #3d2e2b;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0.6rem 1.6rem;
+      letter-spacing: 0.2px;
+      backdrop-filter: blur(8px) saturate(180%);
+      -webkit-backdrop-filter: blur(8px) saturate(180%);
+      /* liquid 50% effect: shimmer + flow */
+      background-image: radial-gradient(circle at 30% 40%, rgba(255,255,240,0.5) 0%, rgba(255,215,215,0.15) 70%);
+      background-blend-mode: overlay;
+      overflow: hidden;
+    }
+
+    .liquid-btn::before, .cta-primary::before, .cta-secondary::before, .buy-btn::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 60px;
+      background: conic-gradient(from 0deg, rgba(255,255,255,0.3), rgba(213,235,228,0.3), rgba(255,211,212,0.3), rgba(255,255,255,0.3));
+      opacity: 0.4;
+      z-index: 0;
+      animation: liquidSpin 6s linear infinite;
+      pointer-events: none;
+      backdrop-filter: blur(6px);
+    }
+    .liquid-btn:hover, .cta-primary:hover, .cta-secondary:hover, .buy-btn:hover {
+      transform: scale(1.02) translateY(-2px);
+      background: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 8px 24px rgba(119, 92, 86, 0.12), inset 0 0 20px rgba(255,255,240,0.3);
+      border-color: rgba(255,255,255,0.8);
+    }
+    .liquid-btn:active, .cta-primary:active, .cta-secondary:active, .buy-btn:active {
+      transform: scale(0.96);
+      transition-duration: 0.05s;
+    }
+
+    @keyframes liquidSpin {
+      0% { transform: rotate(0deg) scale(1.2); }
+      100% { transform: rotate(360deg) scale(1.2); }
+    }
+
+    .cta-primary {
+      background: rgba(119, 92, 86, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.5);
+      color: #2d1f1c;
+      font-weight: 700;
+      padding: 0.9rem 2.6rem;
+      box-shadow: 0 8px 20px rgba(119,92,86,0.08);
+    }
+    .cta-secondary {
+      background: rgba(245, 240, 230, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 0.7rem 2rem;
+    }
+    .buy-btn {
+      padding: 0.3rem 1.2rem;
+      font-size: 0.75rem;
+      background: rgba(213, 235, 228, 0.3);
+    }
+
+    /* nav */
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 0 1rem 0;
-      border-bottom: 2px solid var(--mint);
       flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      padding: 0.6rem 0 1.2rem;
+      border-bottom: 2px solid rgba(213, 235, 228, 0.6);
+      backdrop-filter: blur(4px);
     }
-
     .logo {
-      font-weight: 600;
-      font-size: 1.6rem;
+      font-weight: 700;
+      font-size: 2rem;
       letter-spacing: -0.5px;
-      color: var(--brown);
-      background: var(--pink);
-      padding: 0.2rem 1rem 0.2rem 0.8rem;
-      border-radius: 40px 12px 12px 40px;
-      display: inline-block;
-      box-shadow: 0 4px 8px rgba(119, 92, 86, 0.06);
-    }
-    .logo span {
-      background: white;
-      padding: 0.1rem 0.5rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      margin-left: 4px;
-      color: #5f4a45;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.2rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      background: var(--cream);
-      padding: 0.4rem 1rem;
+      background: rgba(255, 211, 212, 0.3);
+      backdrop-filter: blur(8px);
+      padding: 0.1rem 1.4rem 0.1rem 1rem;
       border-radius: 60px;
-      border: 1px solid #e6dad0;
-      backdrop-filter: blur(2px);
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--brown);
-      transition: 0.15s;
-    }
-    .nav-links a:hover {
-      color: #a8827a;
-      transform: scale(0.96);
-    }
-
-    /* HERO — different from typical cafe: playful gradient + macaron "float" */
-    .hero {
-      margin: 1.5rem 0 2rem 0;
-      background: linear-gradient(145deg, #FFD3D4 0%, #D5EBE4 100%);
-      border-radius: 48px 48px 48px 48px;
-      padding: 2rem 1.8rem;
-      position: relative;
-      box-shadow: 0 12px 24px -8px rgba(119, 92, 86, 0.12);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      transition: 0.2s;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(1px);
-    }
-
-    .hero-badge {
-      background: var(--cream);
-      color: var(--brown);
-      padding: 0.2rem 1rem;
-      border-radius: 60px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-      border: 1px solid white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: 650;
+      border: 1px solid rgba(255,255,255,0.3);
       color: #3d2e2b;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      max-width: 80%;
-    }
-    .hero h1 small {
-      display: block;
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: #5f4a45;
-      margin-top: 0.2rem;
-      letter-spacing: 0.2px;
-      background: rgba(255,255,240,0.5);
-      padding: 0.1rem 0.8rem 0.1rem 0;
-      border-radius: 60px;
-      display: inline-block;
-    }
-
-    .hero-cta {
-      margin-top: 1.8rem;
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      align-items: center;
-      width: 100%;
-    }
-    .cta-primary {
-      background: #775C56;
-      border: none;
-      color: white;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 0.8rem 2.2rem;
-      border-radius: 80px;
-      cursor: pointer;
-      box-shadow: 0 6px 0 #4f3e39;
-      transition: 0.08s linear;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid #5a4540;
-    }
-    .cta-primary:active {
-      transform: translateY(4px);
-      box-shadow: 0 2px 0 #4f3e39;
-    }
-    .cta-secondary {
-      background: #F8F4E8;
-      border: 2px solid #775C56;
-      color: #775C56;
-      font-weight: 600;
-      padding: 0.7rem 1.8rem;
-      border-radius: 80px;
-      cursor: pointer;
-      transition: 0.1s;
-      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 4px;
     }
-
-    /* floating macaron illustration (pure css) */
-    .hero-macaron {
-      position: absolute;
-      right: 1.2rem;
-      bottom: 1.2rem;
-      width: 80px;
-      height: 80px;
-      background: #FFD3D4;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      box-shadow: 0 8px 0 #dbb7b0, 0 12px 20px rgba(119,92,86,0.2);
-      transform: rotate(-8deg);
-      border: 2px solid white;
+    .logo span {
+      font-size: 0.9rem;
+      font-weight: 400;
+      background: rgba(255,255,240,0.3);
+      padding: 0.1rem 0.7rem;
+      border-radius: 60px;
+    }
+    .nav-links {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      font-weight: 300;
-      color: #775C56;
-      animation: float 3s ease-in-out infinite;
+      gap: 0.8rem;
+      flex-wrap: wrap;
     }
-    .hero-macaron::after {
-      content: "🥥";
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
-      font-size: 2.8rem;
-      line-height: 1;
+    .nav-links a {
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.2);
+      font-weight: 500;
+      color: #3d2e2b;
+      transition: 0.15s;
+      text-decoration: none;
+      font-size: 0.9rem;
     }
-    @keyframes float {
-      0% { transform: translateY(0px) rotate(-6deg); }
-      50% { transform: translateY(-10px) rotate(-2deg); }
-      100% { transform: translateY(0px) rotate(-6deg); }
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.4);
+      transform: translateY(-2px);
     }
 
-    /* menu section — cool animation menu */
+    /* hero */
+    .hero {
+      margin: 2rem 0 2.5rem;
+      background: linear-gradient(135deg, rgba(255, 211, 212, 0.4), rgba(213, 235, 228, 0.4));
+      backdrop-filter: blur(6px);
+      border-radius: 60px 20px 60px 20px;
+      padding: 2.4rem 2.2rem;
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 12px 32px -8px rgba(119,92,86,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '🥥';
+      position: absolute;
+      bottom: 10px;
+      right: 16px;
+      font-size: 4rem;
+      opacity: 0.2;
+      transform: rotate(12deg);
+      pointer-events: none;
+    }
+    .hero-badge {
+      background: rgba(255,255,240,0.3);
+      backdrop-filter: blur(4px);
+      padding: 0.2rem 1.4rem;
+      border-radius: 60px;
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(255,255,255,0.3);
+      margin-bottom: 0.8rem;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #2d1f1c;
+      max-width: 80%;
+    }
+    .hero h1 small {
+      font-size: 1.3rem;
+      font-weight: 400;
+      display: block;
+      margin-top: 0.2rem;
+      color: #4f3a35;
+      background: rgba(255,255,240,0.2);
+      padding: 0.1rem 1rem 0.1rem 0;
+      border-radius: 60px;
+      backdrop-filter: blur(2px);
+    }
+    .hero-cta {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* menu section bigger */
     .menu-section {
-      margin: 2.2rem 0 1.8rem;
+      margin: 2.8rem 0 2.2rem;
+    }
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+    .menu-header h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      background: rgba(255,255,240,0.2);
+      padding: 0.2rem 1.2rem;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+    }
+    .menu-tabs {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .menu-tab {
+      padding: 0.3rem 1.2rem;
+      font-size: 0.8rem;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(6px);
+      border-radius: 60px;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .menu-tab.active {
+      background: rgba(213, 235, 228, 0.4);
+      border-color: rgba(119,92,86,0.2);
     }
 
     .menu-grid {
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
-      margin-top: 0.6rem;
+      gap: 1rem;
+      margin: 1rem 0;
     }
 
     .menu-item {
-      background: white;
-      border-radius: 60px 20px 20px 60px;
-      padding: 0.6rem 0.8rem 0.6rem 1.2rem;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 80px 20px 20px 80px;
+      padding: 0.8rem 1.2rem 0.8rem 1.6rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 10px rgba(119, 92, 86, 0.03);
-      border: 1px solid #efe5db;
-      transition: all 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-      cursor: default;
-      transform-origin: left;
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 4px 14px rgba(119,92,86,0.02);
+      transition: 0.2s;
       animation: menuPop 0.3s ease backwards;
+      flex-wrap: wrap;
+      gap: 0.4rem;
     }
     .menu-item:hover {
-      background: #faf6ef;
-      border-color: #D5EBE4;
       transform: scale(1.01) translateX(6px);
-      box-shadow: 0 10px 18px -8px rgba(119,92,86,0.08);
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(255,255,255,0.7);
     }
     .menu-item:nth-child(1) { animation-delay: 0.02s; }
     .menu-item:nth-child(2) { animation-delay: 0.08s; }
     .menu-item:nth-child(3) { animation-delay: 0.14s; }
-    .menu-item:nth-child(4) { animation-delay: 0.2s; }
+    .menu-item:nth-child(4) { animation-delay: 0.20s; }
+    .menu-item:nth-child(5) { animation-delay: 0.26s; }
+    .menu-item:nth-child(6) { animation-delay: 0.32s; }
 
     @keyframes menuPop {
-      0% { opacity: 0; transform: scale(0.92) translateX(-10px); }
+      0% { opacity: 0; transform: scale(0.94) translateX(-12px); }
       100% { opacity: 1; transform: scale(1) translateX(0); }
     }
 
@@ -263,133 +309,126 @@
       display: flex;
       align-items: center;
       gap: 0.8rem;
+      flex: 2 1 180px;
     }
     .menu-icon {
-      background: var(--pink);
-      width: 42px;
-      height: 42px;
+      background: rgba(255, 211, 212, 0.5);
+      backdrop-filter: blur(4px);
+      width: 48px;
+      height: 48px;
       border-radius: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      border: 1px solid white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      font-size: 1.6rem;
+      border: 1px solid rgba(255,255,255,0.3);
       flex-shrink: 0;
     }
     .menu-name {
       font-weight: 600;
-      color: #3d2e2b;
       font-size: 1rem;
+      color: #2d1f1c;
     }
     .menu-desc {
       font-size: 0.7rem;
-      color: #8f7670;
+      color: #6b5550;
       display: block;
-      margin-top: 0.1rem;
-      letter-spacing: -0.1px;
+    }
+    .menu-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
     }
     .menu-price {
-      background: #D5EBE4;
-      padding: 0.2rem 0.9rem;
+      background: rgba(213, 235, 228, 0.4);
+      backdrop-filter: blur(4px);
+      padding: 0.2rem 1.2rem;
       border-radius: 60px;
       font-weight: 600;
-      font-size: 0.9rem;
-      color: #3d5a53;
-      border: 1px solid #c1dbd2;
-      white-space: nowrap;
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
-    .buy-btn {
-      background: var(--cream);
-      border: 1px solid #dacfc5;
-      border-radius: 60px;
-      padding: 0.2rem 1.1rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--brown);
-      transition: 0.1s;
-      text-decoration: none;
-      margin-left: 0.3rem;
-      cursor: pointer;
-    }
-    .buy-btn:active {
-      background: var(--pink);
-      transform: scale(0.94);
-    }
-
-    /* cafe info cards */
+    /* info cards */
     .info-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.7rem;
-      margin: 2rem 0 1.8rem;
-      justify-content: space-between;
+      gap: 0.8rem;
+      margin: 2.4rem 0 2rem;
     }
     .info-card {
-      background: white;
-      border-radius: 60px 12px 12px 60px;
-      padding: 0.7rem 1.4rem 0.7rem 1.2rem;
-      border: 1px solid #eaddd3;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(8px);
+      border-radius: 60px 16px 16px 60px;
+      padding: 0.8rem 1.6rem 0.8rem 1.4rem;
+      border: 1px solid rgba(255,255,255,0.3);
       flex: 1 0 auto;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
+      gap: 10px;
       font-weight: 500;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
-      backdrop-filter: blur(2px);
-    }
-    .info-card i {
-      font-style: normal;
-      background: var(--mint);
-      border-radius: 60px;
-      padding: 0.1rem 0.6rem;
+      font-size: 0.95rem;
     }
 
-    .footer-note {
-      border-top: 2px solid #e5d7cb;
-      margin-top: 0.8rem;
-      padding-top: 1.4rem;
-      font-size: 0.7rem;
-      display: flex;
-      justify-content: space-between;
-      color: #8f7670;
-      letter-spacing: 0.2px;
-      flex-wrap: wrap;
+    /* extra: story / about longer */
+    .story {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0 1.8rem;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .story h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #2d1f1c;
+    }
+    .story p {
+      margin-bottom: 0.6rem;
+      color: #4f3a35;
+      font-size: 0.95rem;
     }
 
-    /* mobile fine-tune */
-    @media (max-width: 480px) {
-      .app { padding: 0.8rem 0.8rem 1rem; }
-      .nav { flex-direction: column; align-items: start; gap: 0.6rem; }
-      .nav-links { align-self: flex-start; }
-      .hero h1 { font-size: 2.2rem; max-width: 100%; }
-      .hero-macaron { width: 70px; height: 70px; right: 0.6rem; bottom: 0.6rem; }
-      .hero-macaron::after { font-size: 2.2rem; }
-      .cta-primary { padding: 0.6rem 1.6rem; font-size: 1rem; }
-      .menu-item { flex-wrap: wrap; border-radius: 40px 16px 16px 40px; }
-      .menu-left { flex: 2; }
-      .menu-price { font-size: 0.8rem; }
-    }
-
-    /* utility */
-    .pill {
-      background: var(--cream);
-      padding: 0.2rem 1rem;
+    .ingredient-tag {
+      background: rgba(255,255,240,0.2);
+      backdrop-filter: blur(4px);
+      padding: 0.1rem 0.8rem;
       border-radius: 60px;
       display: inline-block;
+      border: 1px solid rgba(255,255,255,0.2);
+      margin: 0.1rem 0.2rem;
+      font-size: 0.7rem;
     }
-    .text-muted { color: #8f7670; }
 
-    /* only use palette images:  we use pure css, no external images */
-    /* all colors from palette: #FFD3D4, #D5EBE4, #F8F4E8, #775C56 */
+    .footer {
+      border-top: 2px solid rgba(213, 235, 228, 0.4);
+      margin-top: 2.4rem;
+      padding-top: 1.6rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 0.7rem;
+      color: #6b5550;
+      backdrop-filter: blur(4px);
+    }
+
+    /* mobile */
+    @media (max-width: 500px) {
+      .app { padding: 0.8rem 0.8rem 1.5rem; }
+      .hero h1 { font-size: 2.4rem; max-width: 100%; }
+      .hero { padding: 1.6rem 1.2rem; }
+      .nav { flex-direction: column; align-items: start; }
+      .nav-links { align-self: flex-start; }
+      .menu-item { border-radius: 40px 16px 16px 40px; }
+    }
   </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- nav -->
+  <!-- navigation -->
   <div class="nav">
     <div class="logo">Mina <span>İstanbul</span></div>
     <div class="nav-links">
@@ -400,113 +439,100 @@
     </div>
   </div>
 
-  <!-- HERO: different, with CTA direct -->
+  <!-- hero -->
   <div class="hero">
-    <div class="hero-badge">✦  handmade since 2025</div>
+    <div class="hero-badge">✦  since 2025 · Bebek</div>
     <h1>
       macarons &<br>cafe
-      <small>Bebek · İstanbul</small>
+      <small>handmade · local · joyful</small>
     </h1>
     <div class="hero-cta">
-      <a href="#" class="cta-primary">☕  Order now</a>
-      <a href="#" class="cta-secondary">Menu</a>
+      <a href="#" class="cta-primary liquid-btn">☕  Order now</a>
+      <a href="#" class="cta-secondary liquid-btn">Explore menu</a>
     </div>
-    <!-- floating macaron (CSS only) -->
-    <div class="hero-macaron"></div>
   </div>
 
-  <!-- COOL ANIMATION MENU -->
+  <!-- menu section (cool animated + longer) -->
   <div class="menu-section">
-    <div style="display: flex; justify-content: space-between; align-items: baseline;">
-      <h3 style="color: #3d2e2b; font-weight: 600; letter-spacing: -0.3px;">today's picks</h3>
-      <span style="background: #D5EBE4; padding: 0.1rem 1.2rem; border-radius: 60px; font-size: 0.7rem; font-weight: 600;">✨ fresh</span>
+    <div class="menu-header">
+      <h2>✨ today's macarons</h2>
+      <div class="menu-tabs">
+        <span class="menu-tab active">all</span>
+        <span class="menu-tab">classic</span>
+        <span class="menu-tab">vegan</span>
+      </div>
     </div>
+
     <div class="menu-grid">
-      <!-- item 1 -->
       <div class="menu-item">
-        <div class="menu-left">
-          <span class="menu-icon">🥥</span>
-          <div>
-            <span class="menu-name">Raspberry Coconut</span>
-            <span class="menu-desc">coconut flour · almond · coconut oil</span>
-          </div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.2rem;">
-          <span class="menu-price">₺85</span>
-          <span class="buy-btn">Buy</span>
-        </div>
+        <div class="menu-left"><span class="menu-icon">🥥</span><div><span class="menu-name">Raspberry Coconut</span><span class="menu-desc">coconut flour · almond · coconut oil</span></div></div>
+        <div class="menu-right"><span class="menu-price">₺85</span><span class="buy-btn liquid-btn">Buy</span></div>
       </div>
-      <!-- item 2 -->
       <div class="menu-item">
-        <div class="menu-left">
-          <span class="menu-icon">🍫</span>
-          <div>
-            <span class="menu-name">Dark Chocolate</span>
-            <span class="menu-desc">%70 cocoa · hazelnut</span>
-          </div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.2rem;">
-          <span class="menu-price">₺79</span>
-          <span class="buy-btn">Buy</span>
-        </div>
+        <div class="menu-left"><span class="menu-icon">🍫</span><div><span class="menu-name">Dark Chocolate</span><span class="menu-desc">70% cocoa · hazelnut</span></div></div>
+        <div class="menu-right"><span class="menu-price">₺79</span><span class="buy-btn liquid-btn">Buy</span></div>
       </div>
-      <!-- item 3 -->
       <div class="menu-item">
-        <div class="menu-left">
-          <span class="menu-icon">🍓</span>
-          <div>
-            <span class="menu-name">Strawberry Rose</span>
-            <span class="menu-desc">rose water · white chocolate</span>
-          </div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.2rem;">
-          <span class="menu-price">₺89</span>
-          <span class="buy-btn">Buy</span>
-        </div>
+        <div class="menu-left"><span class="menu-icon">🍓</span><div><span class="menu-name">Strawberry Rose</span><span class="menu-desc">rose water · white chocolate</span></div></div>
+        <div class="menu-right"><span class="menu-price">₺89</span><span class="buy-btn liquid-btn">Buy</span></div>
       </div>
-      <!-- item 4 -->
       <div class="menu-item">
-        <div class="menu-left">
-          <span class="menu-icon">☕</span>
-          <div>
-            <span class="menu-name">Cafe Latte</span>
-            <span class="menu-desc">oat milk · caramel</span>
-          </div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.2rem;">
-          <span class="menu-price">₺64</span>
-          <span class="buy-btn">Buy</span>
-        </div>
+        <div class="menu-left"><span class="menu-icon">☕</span><div><span class="menu-name">Cafe Latte</span><span class="menu-desc">oat milk · caramel</span></div></div>
+        <div class="menu-right"><span class="menu-price">₺64</span><span class="buy-btn liquid-btn">Buy</span></div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-left"><span class="menu-icon">🍵</span><div><span class="menu-name">Matcha Pistachio</span><span class="menu-desc">ceremonial matcha · pistachio</span></div></div>
+        <div class="menu-right"><span class="menu-price">₺92</span><span class="buy-btn liquid-btn">Buy</span></div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-left"><span class="menu-icon">🧁</span><div><span class="menu-name">Vanilla Bean</span><span class="menu-desc">madagascar vanilla · buttercream</span></div></div>
+        <div class="menu-right"><span class="menu-price">₺74</span><span class="buy-btn liquid-btn">Buy</span></div>
       </div>
     </div>
   </div>
 
-  <!-- info cards: location, delivery, hours (fake but friendly) -->
+  <!-- info cards -->
   <div class="info-grid">
     <div class="info-card"><span>📍</span> Bebek, İstanbul</div>
     <div class="info-card"><span>⏱️</span> 08:00 – 21:00</div>
     <div class="info-card"><span>🛵</span> Delivery 30min</div>
+    <div class="info-card"><span>📞</span> +90 555 123 45 67</div>
   </div>
 
-  <!-- macaron ingredients / specs (reference from image) -->
-  <div style="background: #F8F4E8; border-radius: 40px; padding: 0.8rem 1.2rem; border: 1px solid #D5EBE4; margin: 0.6rem 0 0.4rem;">
-    <div style="display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; font-size: 0.7rem; color: #5f4a45;">
-      <span><strong style="color: #775C56;">Raspberry/Coconut</strong>  coconut flour · almond · coconut oil · coconut sugar · water · salt</span>
-      <span style="background: white; padding: 0.1rem 0.8rem; border-radius: 60px;">#FFD3D4</span>
-      <span style="background: white; padding: 0.1rem 0.8rem; border-radius: 60px;">#D5EBE4</span>
+  <!-- story / about (longer content) -->
+  <div class="story">
+    <h3>🌸 our story</h3>
+    <p>Mina is a tiny macaron café nestled in the heart of Bebek, Istanbul. Every morning we bake small batches using local ingredients — coconut flour, almond, and a touch of rose.</p>
+    <p>We believe in real food, real flavors, and real joy. Our macarons are gluten-free, and we offer vegan options with coconut sugar and oat milk.</p>
+    <div style="margin-top: 0.6rem;">
+      <span class="ingredient-tag">#coconut flour</span>
+      <span class="ingredient-tag">#almond</span>
+      <span class="ingredient-tag">#rose water</span>
+      <span class="ingredient-tag">#oat milk</span>
+      <span class="ingredient-tag">#handmade</span>
+    </div>
+  </div>
+
+  <!-- ingredient detail from image (Raspberry/Coconut) -->
+  <div style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(6px); border-radius: 40px; padding: 0.8rem 1.6rem; border: 1px solid rgba(255,255,255,0.2); margin: 1.2rem 0;">
+    <div style="display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; font-size: 0.75rem;">
+      <span><strong>Raspberry/Coconut</strong>  coconut flour · almond · coconut oil · coconut sugar · water · salt</span>
+      <span style="background: rgba(255,211,212,0.3); padding: 0.1rem 0.8rem; border-radius: 60px;">#FFD3D4</span>
+      <span style="background: rgba(213,235,228,0.3); padding: 0.1rem 0.8rem; border-radius: 60px;">#D5EBE4</span>
+      <span style="background: rgba(248,244,232,0.3); padding: 0.1rem 0.8rem; border-radius: 60px;">#F8F4E8</span>
     </div>
   </div>
 
   <!-- footer -->
-  <div class="footer-note">
-    <span>© Mina · imaginary cafe</span>
-    <span>✦  inspired by @泡泡龙的配色卡</span>
-    <span>ID: 6764779400</span>
+  <div class="footer">
+    <span>© Mina · imaginary cafe · istanbul</span>
+    <span>✦  @泡泡龙的配色卡 · ID:6764779400</span>
+    <span>no stock images · pure css</span>
   </div>
 
-  <!-- tiny note: all colors from palette, no Ai images, pure css, mobile first -->
-  <div style="font-size: 0.55rem; color: #b6a098; text-align: center; margin-top: 0.8rem; border-top: 1px dashed #dccfc4; padding-top: 0.6rem;">
-    crafted with ♥ · istanbul · no stock images
+  <!-- small note: all buttons liquid glass, interactive -->
+  <div style="font-size: 0.55rem; color: #9a847e; text-align: center; margin-top: 0.6rem; border-top: 1px solid rgba(213,235,228,0.2); padding-top: 0.6rem;">
+    liquid glass buttons · 50% blur · animated menu · longer content
   </div>
 </div>
 </body>
