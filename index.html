@@ -1,520 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mina • Istanbul</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
-        
-        :root {
-            --pink: #DDA4B4;
-            --blue: #78A5CE;
-            --cream: #FFF0D9;
-            --brown: #7C5549;
-        }
-        
-        .tail-container {
-            font-family: 'Inter', system-ui, sans-serif;
-        }
-        
-        .logo-font {
-            font-family: 'Playfair Display', serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Mina · cafe istanbul</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://picsum.photos/id/1015/2000/1200');
-            background-size: cover;
-            background-position: center;
-        }
+    body {
+      background: #F8F4E8;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #775C56;
+      line-height: 1.4;
+      padding: 0 0 2rem 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .macaron-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .macaron-card:hover {
-            transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-        }
+    /* main wrapper */
+    .app {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem 1.2rem 2rem;
+      width: 100%;
+      flex: 1;
+    }
 
-        .menu-item {
-            transition: all 0.3s ease;
-        }
+    /* color palette variables */
+    :root {
+      --pink: #FFD3D4;
+      --mint: #D5EBE4;
+      --cream: #F8F4E8;
+      --brown: #775C56;
+    }
 
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #DDA4B4;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover:after {
-            width: 100%;
-        }
+    /* header / nav */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0 1rem 0;
+      border-bottom: 2px solid var(--mint);
+      flex-wrap: wrap;
+    }
 
-        .flavor-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-    </style>
+    .logo {
+      font-weight: 600;
+      font-size: 1.6rem;
+      letter-spacing: -0.5px;
+      color: var(--brown);
+      background: var(--pink);
+      padding: 0.2rem 1rem 0.2rem 0.8rem;
+      border-radius: 40px 12px 12px 40px;
+      display: inline-block;
+      box-shadow: 0 4px 8px rgba(119, 92, 86, 0.06);
+    }
+    .logo span {
+      background: white;
+      padding: 0.1rem 0.5rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      margin-left: 4px;
+      color: #5f4a45;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: var(--cream);
+      padding: 0.4rem 1rem;
+      border-radius: 60px;
+      border: 1px solid #e6dad0;
+      backdrop-filter: blur(2px);
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--brown);
+      transition: 0.15s;
+    }
+    .nav-links a:hover {
+      color: #a8827a;
+      transform: scale(0.96);
+    }
+
+    /* HERO — different from typical cafe: playful gradient + macaron "float" */
+    .hero {
+      margin: 1.5rem 0 2rem 0;
+      background: linear-gradient(145deg, #FFD3D4 0%, #D5EBE4 100%);
+      border-radius: 48px 48px 48px 48px;
+      padding: 2rem 1.8rem;
+      position: relative;
+      box-shadow: 0 12px 24px -8px rgba(119, 92, 86, 0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: 0.2s;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(1px);
+    }
+
+    .hero-badge {
+      background: var(--cream);
+      color: var(--brown);
+      padding: 0.2rem 1rem;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      border: 1px solid white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 650;
+      color: #3d2e2b;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      max-width: 80%;
+    }
+    .hero h1 small {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #5f4a45;
+      margin-top: 0.2rem;
+      letter-spacing: 0.2px;
+      background: rgba(255,255,240,0.5);
+      padding: 0.1rem 0.8rem 0.1rem 0;
+      border-radius: 60px;
+      display: inline-block;
+    }
+
+    .hero-cta {
+      margin-top: 1.8rem;
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+    }
+    .cta-primary {
+      background: #775C56;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.8rem 2.2rem;
+      border-radius: 80px;
+      cursor: pointer;
+      box-shadow: 0 6px 0 #4f3e39;
+      transition: 0.08s linear;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #5a4540;
+    }
+    .cta-primary:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #4f3e39;
+    }
+    .cta-secondary {
+      background: #F8F4E8;
+      border: 2px solid #775C56;
+      color: #775C56;
+      font-weight: 600;
+      padding: 0.7rem 1.8rem;
+      border-radius: 80px;
+      cursor: pointer;
+      transition: 0.1s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* floating macaron illustration (pure css) */
+    .hero-macaron {
+      position: absolute;
+      right: 1.2rem;
+      bottom: 1.2rem;
+      width: 80px;
+      height: 80px;
+      background: #FFD3D4;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 0 8px 0 #dbb7b0, 0 12px 20px rgba(119,92,86,0.2);
+      transform: rotate(-8deg);
+      border: 2px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: #775C56;
+      animation: float 3s ease-in-out infinite;
+    }
+    .hero-macaron::after {
+      content: "🥥";
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+      font-size: 2.8rem;
+      line-height: 1;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(-6deg); }
+      50% { transform: translateY(-10px) rotate(-2deg); }
+      100% { transform: translateY(0px) rotate(-6deg); }
+    }
+
+    /* menu section — cool animation menu */
+    .menu-section {
+      margin: 2.2rem 0 1.8rem;
+    }
+
+    .menu-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-top: 0.6rem;
+    }
+
+    .menu-item {
+      background: white;
+      border-radius: 60px 20px 20px 60px;
+      padding: 0.6rem 0.8rem 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(119, 92, 86, 0.03);
+      border: 1px solid #efe5db;
+      transition: all 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      cursor: default;
+      transform-origin: left;
+      animation: menuPop 0.3s ease backwards;
+    }
+    .menu-item:hover {
+      background: #faf6ef;
+      border-color: #D5EBE4;
+      transform: scale(1.01) translateX(6px);
+      box-shadow: 0 10px 18px -8px rgba(119,92,86,0.08);
+    }
+    .menu-item:nth-child(1) { animation-delay: 0.02s; }
+    .menu-item:nth-child(2) { animation-delay: 0.08s; }
+    .menu-item:nth-child(3) { animation-delay: 0.14s; }
+    .menu-item:nth-child(4) { animation-delay: 0.2s; }
+
+    @keyframes menuPop {
+      0% { opacity: 0; transform: scale(0.92) translateX(-10px); }
+      100% { opacity: 1; transform: scale(1) translateX(0); }
+    }
+
+    .menu-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .menu-icon {
+      background: var(--pink);
+      width: 42px;
+      height: 42px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 1px solid white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      flex-shrink: 0;
+    }
+    .menu-name {
+      font-weight: 600;
+      color: #3d2e2b;
+      font-size: 1rem;
+    }
+    .menu-desc {
+      font-size: 0.7rem;
+      color: #8f7670;
+      display: block;
+      margin-top: 0.1rem;
+      letter-spacing: -0.1px;
+    }
+    .menu-price {
+      background: #D5EBE4;
+      padding: 0.2rem 0.9rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #3d5a53;
+      border: 1px solid #c1dbd2;
+      white-space: nowrap;
+    }
+
+    .buy-btn {
+      background: var(--cream);
+      border: 1px solid #dacfc5;
+      border-radius: 60px;
+      padding: 0.2rem 1.1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--brown);
+      transition: 0.1s;
+      text-decoration: none;
+      margin-left: 0.3rem;
+      cursor: pointer;
+    }
+    .buy-btn:active {
+      background: var(--pink);
+      transform: scale(0.94);
+    }
+
+    /* cafe info cards */
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 2rem 0 1.8rem;
+      justify-content: space-between;
+    }
+    .info-card {
+      background: white;
+      border-radius: 60px 12px 12px 60px;
+      padding: 0.7rem 1.4rem 0.7rem 1.2rem;
+      border: 1px solid #eaddd3;
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+      backdrop-filter: blur(2px);
+    }
+    .info-card i {
+      font-style: normal;
+      background: var(--mint);
+      border-radius: 60px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    .footer-note {
+      border-top: 2px solid #e5d7cb;
+      margin-top: 0.8rem;
+      padding-top: 1.4rem;
+      font-size: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+      color: #8f7670;
+      letter-spacing: 0.2px;
+      flex-wrap: wrap;
+    }
+
+    /* mobile fine-tune */
+    @media (max-width: 480px) {
+      .app { padding: 0.8rem 0.8rem 1rem; }
+      .nav { flex-direction: column; align-items: start; gap: 0.6rem; }
+      .nav-links { align-self: flex-start; }
+      .hero h1 { font-size: 2.2rem; max-width: 100%; }
+      .hero-macaron { width: 70px; height: 70px; right: 0.6rem; bottom: 0.6rem; }
+      .hero-macaron::after { font-size: 2.2rem; }
+      .cta-primary { padding: 0.6rem 1.6rem; font-size: 1rem; }
+      .menu-item { flex-wrap: wrap; border-radius: 40px 16px 16px 40px; }
+      .menu-left { flex: 2; }
+      .menu-price { font-size: 0.8rem; }
+    }
+
+    /* utility */
+    .pill {
+      background: var(--cream);
+      padding: 0.2rem 1rem;
+      border-radius: 60px;
+      display: inline-block;
+    }
+    .text-muted { color: #8f7670; }
+
+    /* only use palette images:  we use pure css, no external images */
+    /* all colors from palette: #FFD3D4, #D5EBE4, #F8F4E8, #775C56 */
+  </style>
 </head>
-<body class="tail-container bg-[#FFF0D9] text-[#7C5549] overflow-x-hidden">
-    <!-- NAVBAR -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="px-6 py-5 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-[#DDA4B4] rounded-2xl flex items-center justify-center text-white text-2xl">🍪</div>
-                    <div>
-                        <span class="logo-font text-3xl font-bold tracking-tight text-[#7C5549]">mina</span>
-                    </div>
-                </div>
-                
-                <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                    <a href="#menu" onclick="smoothScrollTo('menu')" class="nav-link cursor-pointer">MENU</a>
-                    <a href="#about" onclick="smoothScrollTo('about')" class="nav-link cursor-pointer">OUR STORY</a>
-                    <a href="#visit" onclick="smoothScrollTo('visit')" class="nav-link cursor-pointer">VISIT</a>
-                    <a href="#contact" onclick="smoothScrollTo('contact')" class="nav-link cursor-pointer">CONTACT</a>
-                </div>
+<body>
+<div class="app">
 
-                <div class="flex items-center gap-4">
-                    <button onclick="showCart()" 
-                            class="flex items-center gap-2 px-5 py-2.5 bg-white border border-[#DDA4B4] hover:bg-[#DDA4B4] hover:text-white transition-colors rounded-3xl text-sm font-medium">
-                        <i class="fas fa-shopping-bag"></i>
-                        <span id="cart-count" class="text-xs bg-[#DDA4B4] text-white px-1.5 rounded-full">0</span>
-                    </button>
-                    <button onclick="toggleMobileMenu()" 
-                            class="md:hidden w-10 h-10 flex items-center justify-center text-2xl">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- MOBILE MENU -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t py-6 px-6">
-            <div class="flex flex-col gap-6 text-lg">
-                <a href="#menu" onclick="toggleMobileMenu();smoothScrollTo('menu')" class="font-medium">MENU</a>
-                <a href="#about" onclick="toggleMobileMenu();smoothScrollTo('about')" class="font-medium">OUR STORY</a>
-                <a href="#visit" onclick="toggleMobileMenu();smoothScrollTo('visit')" class="font-medium">VISIT US</a>
-                <a href="#contact" onclick="toggleMobileMenu();smoothScrollTo('contact')" class="font-medium">CONTACT</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <header class="hero-bg h-screen flex items-center text-white relative">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-3xl mb-6">
-                <span class="text-xs tracking-[3px] font-medium">ISTANBUL • SINCE 2023</span>
-            </div>
-            
-            <h1 class="text-7xl md:text-8xl font-bold logo-font leading-none mb-4 tracking-tighter">
-                SWEET MOMENTS<br>IN THE CITY
-            </h1>
-            
-            <p class="max-w-md mx-auto text-lg md:text-xl mb-10 text-white/90">
-                Handcrafted macarons, Turkish delights &amp; coffee with soul. 
-                Located in the heart of Karaköy.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="smoothScrollTo('menu')"
-                        class="px-10 py-5 bg-white text-[#7C5549] font-semibold rounded-3xl hover:bg-[#FFF0D9] transition-all active:scale-95 text-lg flex items-center justify-center gap-3">
-                    <span>BROWSE MENU</span>
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-                
-                <button onclick="window.location.href='https://wa.me/905551234567'" 
-                        class="px-10 py-5 border-2 border-white font-semibold rounded-3xl hover:bg-white/10 transition-all text-lg">
-                    ORDER VIA WHATSAPP
-                </button>
-            </div>
-            
-            <div class="mt-16 flex justify-center gap-8 text-sm">
-                <div class="text-center">
-                    <div class="text-3xl font-light">12</div>
-                    <div class="text-xs tracking-widest opacity-75">FLAVORS</div>
-                </div>
-                <div class="h-8 w-px bg-white/30"></div>
-                <div class="text-center">
-                    <div class="text-3xl font-light">4.9</div>
-                    <div class="text-xs tracking-widest opacity-75">RATING</div>
-                </div>
-                <div class="h-8 w-px bg-white/30"></div>
-                <div class="text-center">
-                    <div class="text-3xl font-light">15</div>
-                    <div class="text-xs tracking-widest opacity-75">MIN WAIT</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-4xl"></i>
-        </div>
-    </header>
-
-    <!-- MENU SECTION -->
-    <section id="menu" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div>
-                    <span class="uppercase text-xs tracking-[2px] text-[#78A5CE]">Signature Collection</span>
-                    <h2 class="text-5xl logo-font font-bold text-[#7C5549]">Our Macarons &amp; Treats</h2>
-                </div>
-                <a href="#" onclick="viewFullMenu()" 
-                   class="hidden md:flex items-center gap-2 text-sm font-medium hover:text-[#DDA4B4]">
-                    FULL MENU <span class="text-xl">→</span>
-                </a>
-            </div>
-            
-            <!-- MENU GRID -->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="menu-grid">
-                <!-- Populated by JS -->
-            </div>
-            
-            <div class="mt-12 text-center">
-                <button onclick="viewFullMenu()" 
-                        class="px-8 py-4 border-2 border-[#DDA4B4] text-[#DDA4B4] hover:bg-[#DDA4B4] hover:text-white rounded-3xl font-medium transition-all">
-                    SEE ENTIRE MENU
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="py-20 bg-[#FFF0D9]">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-12 items-center">
-                <div class="md:col-span-5">
-                    <img src="https://picsum.photos/id/870/800/1000" 
-                         alt="Mina Cafe Interior" 
-                         class="rounded-3xl shadow-2xl w-full">
-                </div>
-                <div class="md:col-span-7">
-                    <div class="max-w-lg">
-                        <span class="inline-block px-4 py-2 bg-white rounded-3xl text-sm mb-6">EST. 2023 • KARAKÖY</span>
-                        <h2 class="text-5xl leading-none logo-font font-bold mb-8">A little corner of joy in Istanbul</h2>
-                        <p class="text-lg leading-relaxed text-[#7C5549]/80">
-                            Mina was born from a love of perfect macarons and the vibrant energy of Istanbul. 
-                            Every shell is baked fresh daily with the finest ingredients. We celebrate Turkish flavors 
-                            with a modern twist — pistachio rose, Turkish coffee, and more.
-                        </p>
-                        
-                        <div class="flex gap-8 mt-12">
-                            <div>
-                                <div class="text-4xl font-light text-[#DDA4B4]">100%</div>
-                                <div class="text-sm">Fresh daily</div>
-                            </div>
-                            <div>
-                                <div class="text-4xl font-light text-[#DDA4B4]">8</div>
-                                <div class="text-sm">Signature flavors</div>
-                            </div>
-                            <div>
-                                <div class="text-4xl font-light text-[#DDA4B4]">∞</div>
-                                <div class="text-sm">Love baked in</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- VISIT -->
-    <section id="visit" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16">
-                <div>
-                    <h2 class="text-5xl logo-font font-bold mb-8">Come say hello</h2>
-                    <div class="space-y-8">
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-[#DDA4B4]/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">📍</div>
-                            <div>
-                                <div class="font-medium">Karaköy, Istanbul</div>
-                                <div class="text-sm text-[#7C5549]/70">Hacımimi Mah. Kemeraltı Cad. No:12</div>
-                                <a href="#" class="text-[#78A5CE] text-sm hover:underline">Get directions →</a>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-[#DDA4B4]/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">🕒</div>
-                            <div>
-                                <div class="font-medium">Opening Hours</div>
-                                <div class="text-sm text-[#7C5549]/70">Every day 9:00 – 22:00</div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-[#DDA4B4]/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">☎️</div>
-                            <div>
-                                <div class="font-medium">+90 555 123 45 67</div>
-                                <button onclick="window.location.href='https://wa.me/905551234567'" 
-                                        class="mt-3 text-sm px-6 py-3 bg-[#78A5CE] text-white rounded-3xl">
-                                    Message us on WhatsApp
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="rounded-3xl overflow-hidden shadow-2xl h-full">
-                    <img src="https://picsum.photos/id/1016/900/700" 
-                         alt="Cafe Exterior" 
-                         class="w-full h-full object-cover">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS / FUN SECTION -->
-    <section class="py-20 bg-[#FFF0D9]">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="text-6xl mb-8">⭐⭐⭐⭐⭐</div>
-            <p class="text-2xl italic">"The best macarons I've had outside of Paris. The pistachio-rose is life-changing!"</p>
-            <div class="mt-8 text-sm">— Ece Ö., Istanbul</div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-[#7C5549] text-white py-16">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-y-12">
-                <div class="md:col-span-5">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-9 h-9 bg-white rounded-2xl flex items-center justify-center text-[#7C5549] text-3xl">🍪</div>
-                        <span class="logo-font text-4xl font-bold">mina</span>
-                    </div>
-                    <p class="max-w-xs text-white/70">
-                        Small batch macarons • Specialty coffee • Turkish sweets
-                    </p>
-                </div>
-                
-                <div class="md:col-span-2">
-                    <div class="text-sm uppercase tracking-widest mb-4 opacity-60">Quick Links</div>
-                    <div class="flex flex-col gap-3 text-sm">
-                        <a href="#" class="hover:text-[#FFF0D9]">Menu</a>
-                        <a href="#" class="hover:text-[#FFF0D9]">Wholesale</a>
-                        <a href="#" class="hover:text-[#FFF0D9]">Catering</a>
-                    </div>
-                </div>
-                
-                <div class="md:col-span-5">
-                    <div class="bg-white/10 backdrop-blur p-8 rounded-3xl">
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="flavor-dot bg-[#78A5CE]"></div>
-                            <div class="flavor-dot bg-[#FFF0D9]"></div>
-                            <div class="flavor-dot bg-[#DDA4B4]"></div>
-                            <div class="flavor-dot bg-[#7C5549]"></div>
-                        </div>
-                        <div class="text-sm opacity-75">
-                            Follow our journey<br>
-                            <a href="#" class="underline">@minacafetr</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-20 pt-8 border-t border-white/20 text-xs flex flex-col md:flex-row justify-between items-center gap-4 opacity-60">
-                <div>© 2026 Mina Cafe • All rights reserved</div>
-                <div>Made with ❤️ in Istanbul</div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- MENU MODAL -->
-    <div id="menu-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100]">
-        <div class="bg-white rounded-3xl max-w-lg w-full mx-4 max-h-[90vh] overflow-hidden">
-            <div class="p-8" id="modal-content">
-                <!-- JS injected -->
-            </div>
-            <div class="border-t p-4 flex justify-end">
-                <button onclick="closeModal()" 
-                        class="px-8 py-4 text-[#DDA4B4] font-medium">Close</button>
-            </div>
-        </div>
+  <!-- nav -->
+  <div class="nav">
+    <div class="logo">Mina <span>İstanbul</span></div>
+    <div class="nav-links">
+      <a href="#">Menu</a>
+      <a href="#">Delivery</a>
+      <a href="#">About</a>
+      <a href="#">Contacts</a>
     </div>
+  </div>
 
-    <script>
-        // Tailwind script already loaded via CDN
-        
-        function initTailwind() {
-            // Already initialized by CDN
-        }
-        
-        // Sample menu items
-        const menuItems = [
-            {
-                id: 1,
-                name: "Pistachio Rose",
-                price: "₺95",
-                desc: "Turkish pistachio & delicate rose water",
-                color: "#78A5CE",
-                img: "https://picsum.photos/id/292/400/400"
-            },
-            {
-                id: 2,
-                name: "Turkish Coffee",
-                price: "₺85",
-                desc: "Rich espresso notes with cardamom",
-                color: "#7C5549",
-                img: "https://picsum.photos/id/431/400/400"
-            },
-            {
-                id: 3,
-                name: "Lemon Lavender",
-                price: "₺90",
-                desc: "Bright citrus & Provence lavender",
-                color: "#DDA4B4",
-                img: "https://picsum.photos/id/870/400/400"
-            },
-            {
-                id: 4,
-                name: "Dark Chocolate",
-                price: "₺95",
-                desc: "70% Valrhona chocolate ganache",
-                color: "#7C5549",
-                img: "https://picsum.photos/id/106/400/400"
-            }
-        ]
-        
-        function renderMenu() {
-            const container = document.getElementById('menu-grid')
-            container.innerHTML = ''
-            
-            menuItems.forEach(item => {
-                const div = document.createElement('div')
-                div.className = `macaron-card bg-white rounded-3xl overflow-hidden shadow cursor-pointer`
-                div.innerHTML = `
-                    <div class="h-56 bg-cover bg-center" style="background-image: url('${item.img}')"></div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <div class="font-semibold text-lg">${item.name}</div>
-                                <div class="text-sm text-[#7C5549]/60">${item.desc}</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-xl font-medium text-[#DDA4B4]">${item.price}</div>
-                            </div>
-                        </div>
-                        <button onclick="addToCart(${item.id}); event.stopImmediatePropagation()" 
-                                class="mt-6 w-full py-3 bg-[#DDA4B4] hover:bg-[#c68a9a] text-white rounded-3xl text-sm font-medium transition-colors">
-                            ADD TO BAG
-                        </button>
-                    </div>
-                `
-                div.onclick = () => showItemModal(item)
-                container.appendChild(div)
-            })
-        }
-        
-        let cartCount = 0
-        
-        function addToCart(id) {
-            cartCount++
-            document.getElementById('cart-count').textContent = cartCount
-            // Simple toast
-            const toast = document.createElement('div')
-            toast.style.position = 'fixed'
-            toast.style.bottom = '20px'
-            toast.style.left = '50%'
-            toast.style.transform = 'translateX(-50%)'
-            toast.style.backgroundColor = '#7C5549'
-            toast.style.color = 'white'
-            toast.style.padding = '12px 24px'
-            toast.style.borderRadius = '9999px'
-            toast.style.zIndex = '200'
-            toast.style.whiteSpace = 'nowrap'
-            toast.textContent = 'Added to bag ✓'
-            document.body.appendChild(toast)
-            setTimeout(() => toast.remove(), 1800)
-        }
-        
-        function showCart() {
-            alert("Your bag is empty for now.\n\nIn a real site this would show the cart modal.")
-        }
-        
-        function showItemModal(item) {
-            const modal = document.getElementById('menu-modal')
-            const content = document.getElementById('modal-content')
-            
-            content.innerHTML = `
-                <div class="flex justify-between items-start mb-6">
-                    <div>
-                        <div class="uppercase text-xs tracking-widest text-[#78A5CE]">Signature Macaron</div>
-                        <div class="text-4xl font-bold text-[#7C5549]">${item.name}</div>
-                    </div>
-                    <div class="text-4xl font-light">${item.price}</div>
-                </div>
-                
-                <img src="${item.img}" class="w-full h-80 object-cover rounded-3xl mb-8" alt="${item.name}">
-                
-                <p class="leading-relaxed text-[#7C5549]/80">${item.desc}. Made fresh every morning using the finest ingredients from Turkey and beyond.</p>
-                
-                <div class="mt-8 pt-8 border-t grid grid-cols-2 gap-6 text-sm">
-                    <div>
-                        <div class="font-medium mb-1">Allergens</div>
-                        <div class="text-[#7C5549]/60">Almonds • Dairy • Eggs</div>
-                    </div>
-                    <div>
-                        <div class="font-medium mb-1">Calories</div>
-                        <div class="text-[#7C5549]/60">92 kcal</div>
-                    </div>
-                </div>
-            `
-            modal.classList.remove('hidden')
-            modal.classList.add('flex')
-        }
-        
-        function closeModal() {
-            const modal = document.getElementById('menu-modal')
-            modal.classList.add('hidden')
-            modal.classList.remove('flex')
-        }
-        
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu')
-            menu.classList.toggle('hidden')
-        }
-        
-        function smoothScrollTo(section) {
-            const el = document.getElementById(section)
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth' })
-            }
-        }
-        
-        function viewFullMenu() {
-            alert("Full menu would open here.\n\nIn production this would be a separate page or expanded view.")
-        }
-        
-        // Keyboard escape support
-        document.addEventListener('keydown', function(e) {
-            if (e.key === "Escape") {
-                const modal = document.getElementById('menu-modal')
-                if (!modal.classList.contains('hidden')) closeModal()
-            }
-        })
-        
-        // Initialize everything
-        window.onload = function() {
-            renderMenu()
-            
-            // Make sure mobile menu is closed
-            console.log('%cMina Cafe website ready! 🍪', 'color:#DDA4B4; font-family:monospace')
-        }
-    </script>
+  <!-- HERO: different, with CTA direct -->
+  <div class="hero">
+    <div class="hero-badge">✦  handmade since 2025</div>
+    <h1>
+      macarons &<br>cafe
+      <small>Bebek · İstanbul</small>
+    </h1>
+    <div class="hero-cta">
+      <a href="#" class="cta-primary">☕  Order now</a>
+      <a href="#" class="cta-secondary">Menu</a>
+    </div>
+    <!-- floating macaron (CSS only) -->
+    <div class="hero-macaron"></div>
+  </div>
+
+  <!-- COOL ANIMATION MENU -->
+  <div class="menu-section">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <h3 style="color: #3d2e2b; font-weight: 600; letter-spacing: -0.3px;">today's picks</h3>
+      <span style="background: #D5EBE4; padding: 0.1rem 1.2rem; border-radius: 60px; font-size: 0.7rem; font-weight: 600;">✨ fresh</span>
+    </div>
+    <div class="menu-grid">
+      <!-- item 1 -->
+      <div class="menu-item">
+        <div class="menu-left">
+          <span class="menu-icon">🥥</span>
+          <div>
+            <span class="menu-name">Raspberry Coconut</span>
+            <span class="menu-desc">coconut flour · almond · coconut oil</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.2rem;">
+          <span class="menu-price">₺85</span>
+          <span class="buy-btn">Buy</span>
+        </div>
+      </div>
+      <!-- item 2 -->
+      <div class="menu-item">
+        <div class="menu-left">
+          <span class="menu-icon">🍫</span>
+          <div>
+            <span class="menu-name">Dark Chocolate</span>
+            <span class="menu-desc">%70 cocoa · hazelnut</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.2rem;">
+          <span class="menu-price">₺79</span>
+          <span class="buy-btn">Buy</span>
+        </div>
+      </div>
+      <!-- item 3 -->
+      <div class="menu-item">
+        <div class="menu-left">
+          <span class="menu-icon">🍓</span>
+          <div>
+            <span class="menu-name">Strawberry Rose</span>
+            <span class="menu-desc">rose water · white chocolate</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.2rem;">
+          <span class="menu-price">₺89</span>
+          <span class="buy-btn">Buy</span>
+        </div>
+      </div>
+      <!-- item 4 -->
+      <div class="menu-item">
+        <div class="menu-left">
+          <span class="menu-icon">☕</span>
+          <div>
+            <span class="menu-name">Cafe Latte</span>
+            <span class="menu-desc">oat milk · caramel</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.2rem;">
+          <span class="menu-price">₺64</span>
+          <span class="buy-btn">Buy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- info cards: location, delivery, hours (fake but friendly) -->
+  <div class="info-grid">
+    <div class="info-card"><span>📍</span> Bebek, İstanbul</div>
+    <div class="info-card"><span>⏱️</span> 08:00 – 21:00</div>
+    <div class="info-card"><span>🛵</span> Delivery 30min</div>
+  </div>
+
+  <!-- macaron ingredients / specs (reference from image) -->
+  <div style="background: #F8F4E8; border-radius: 40px; padding: 0.8rem 1.2rem; border: 1px solid #D5EBE4; margin: 0.6rem 0 0.4rem;">
+    <div style="display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; font-size: 0.7rem; color: #5f4a45;">
+      <span><strong style="color: #775C56;">Raspberry/Coconut</strong>  coconut flour · almond · coconut oil · coconut sugar · water · salt</span>
+      <span style="background: white; padding: 0.1rem 0.8rem; border-radius: 60px;">#FFD3D4</span>
+      <span style="background: white; padding: 0.1rem 0.8rem; border-radius: 60px;">#D5EBE4</span>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div class="footer-note">
+    <span>© Mina · imaginary cafe</span>
+    <span>✦  inspired by @泡泡龙的配色卡</span>
+    <span>ID: 6764779400</span>
+  </div>
+
+  <!-- tiny note: all colors from palette, no Ai images, pure css, mobile first -->
+  <div style="font-size: 0.55rem; color: #b6a098; text-align: center; margin-top: 0.8rem; border-top: 1px dashed #dccfc4; padding-top: 0.6rem;">
+    crafted with ♥ · istanbul · no stock images
+  </div>
+</div>
 </body>
 </html>
