@@ -197,7 +197,7 @@
         }
 
         /* ============================================================
-           LIQUID GLASS CORE
+           GLASS CARDS (保留, but buttons are normal)
            ============================================================ */
         .glass {
             background: rgba(255, 255, 255, 0.15);
@@ -213,22 +213,6 @@
             overflow: hidden;
         }
 
-        .glass::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255, 255, 255, 0.22) 0%, transparent 60%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 1;
-        }
-
-        .glass:hover::before {
-            opacity: 1;
-        }
-
         .glass>* {
             position: relative;
             z-index: 2;
@@ -241,7 +225,7 @@
             transform: translateY(-3px);
         }
 
-        /* Glass sweep reflection */
+        /* Glass sweep reflection (decorative) */
         .glass-sweep {
             position: relative;
             overflow: hidden;
@@ -271,125 +255,63 @@
         }
 
         /* ============================================================
-           LIQUID GLASS BUTTONS
+           NORMAL BUTTONS (no glass)
            ============================================================ */
-        .liquid-btn {
-            position: relative;
+        .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 17px 38px;
+            padding: 14px 32px;
             border-radius: 999px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1rem;
             color: var(--text-primary);
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(28px) saturate(180%);
-            -webkit-backdrop-filter: blur(28px) saturate(180%);
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            background: var(--color-peach);
+            border: none;
             cursor: pointer;
-            box-shadow:
-                inset 0 1px 1px rgba(255, 255, 255, 0.5),
-                0 4px 20px rgba(0, 0, 0, 0.03);
-            letter-spacing: 0.01em;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
             gap: 8px;
+            font-family: var(--font);
+            letter-spacing: 0.01em;
         }
 
-        .liquid-btn::before {
-            content: '';
-            position: absolute;
-            inset: -40%;
-            background: radial-gradient(circle at 30% 35%, rgba(255, 255, 255, 0.7), transparent 55%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-            border-radius: 50%;
-            transform: scale(1.2);
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+            background: var(--color-pink);
         }
 
-        .liquid-btn:hover::before {
-            opacity: 1;
-            animation: liquidShine 3.5s ease-in-out infinite;
-        }
-
-        @keyframes liquidShine {
-            0% {
-                transform: translateX(-35%) scale(1.2);
-            }
-            50% {
-                transform: translateX(15%) scale(1.3);
-            }
-            100% {
-                transform: translateX(-35%) scale(1.2);
-            }
-        }
-
-        .liquid-btn::after {
-            content: '';
-            position: absolute;
-            top: 5%;
-            left: 12%;
-            width: 76%;
-            height: 36%;
-            border-radius: 999px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
-            opacity: 0.5;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .liquid-btn:hover::after {
-            opacity: 0.8;
-        }
-
-        .liquid-btn>* {
-            position: relative;
-            z-index: 2;
-        }
-
-        .liquid-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow:
-                inset 0 1px 1px rgba(255, 255, 255, 0.6),
-                0 12px 48px rgba(0, 0, 0, 0.06),
-                0 4px 24px rgba(0, 0, 0, 0.02);
-        }
-
-        .liquid-btn:active {
-            transform: translateY(0px) scale(0.96);
+        .btn:active {
+            transform: translateY(0px) scale(0.97);
             transition-duration: 0.12s;
         }
 
-        .liquid-btn.primary {
-            background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-peach) 100%);
-            border-color: rgba(255, 182, 189, 0.5);
+        .btn-primary {
+            background: var(--color-pink);
             color: var(--text-primary);
-            box-shadow:
-                inset 0 1px 1px rgba(255, 255, 255, 0.7),
-                0 8px 32px rgba(255, 182, 189, 0.25);
+            box-shadow: 0 4px 20px rgba(255, 182, 189, 0.3);
         }
 
-        .liquid-btn.primary::after {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
-            opacity: 0.6;
+        .btn-primary:hover {
+            background: #ffa5ad;
+            box-shadow: 0 8px 32px rgba(255, 182, 189, 0.4);
         }
 
-        .liquid-btn.secondary {
-            background: linear-gradient(135deg, var(--color-blue) 0%, #c5e8f5 100%);
-            border-color: rgba(175, 220, 241, 0.5);
-            box-shadow:
-                inset 0 1px 1px rgba(255, 255, 255, 0.7),
-                0 8px 32px rgba(175, 220, 241, 0.25);
+        .btn-secondary {
+            background: var(--color-blue);
+            box-shadow: 0 4px 20px rgba(175, 220, 241, 0.3);
         }
 
-        .liquid-btn.small {
-            padding: 10px 24px;
-            font-size: 0.82rem;
+        .btn-secondary:hover {
+            background: #9acde6;
+            box-shadow: 0 8px 32px rgba(175, 220, 241, 0.4);
+        }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.85rem;
         }
 
         /* ============================================================
@@ -709,7 +631,7 @@
         }
 
         /* ============================================================
-           MENU GRID
+           MENU GRID (with images)
            ============================================================ */
         .menu-grid {
             display: grid;
@@ -719,7 +641,7 @@
 
         .menu-card {
             border-radius: var(--radius-lg);
-            padding: 34px 30px 30px;
+            padding: 0 0 30px 0;
             background: rgba(255, 215, 213, 0.12);
             backdrop-filter: blur(32px) saturate(180%);
             -webkit-backdrop-filter: blur(32px) saturate(180%);
@@ -728,7 +650,6 @@
                 inset 0 1px 1px rgba(255, 255, 255, 0.4),
                 0 8px 36px rgba(0, 0, 0, 0.03);
             transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-            position: relative;
             overflow: hidden;
             cursor: default;
         }
@@ -741,16 +662,21 @@
                 0 8px 32px rgba(0, 0, 0, 0.02);
         }
 
-        .menu-card .menu-icon {
-            font-size: 2.8rem;
-            margin-bottom: 16px;
+        .menu-card .menu-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
             display: block;
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            line-height: 1;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            background: var(--color-cream);
         }
 
-        .menu-card:hover .menu-icon {
-            transform: scale(1.12) rotate(3deg);
+        .menu-card .menu-content {
+            padding: 20px 24px 0;
+        }
+
+        .menu-card .menu-icon {
+            display: none; /* replaced by image */
         }
 
         .menu-card h3 {
@@ -768,15 +694,52 @@
         }
 
         .menu-card .price-row {
-            margin-top: 22px;
+            margin-top: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding-bottom: 6px;
         }
 
         .menu-card .price {
             font-size: 1.25rem;
             font-weight: 700;
+        }
+
+        /* ============================================================
+           MENU SECTIONS (drinks, cakes, cookies – no images)
+           ============================================================ */
+        .menu-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-list-item {
+            padding: 18px 22px;
+            background: rgba(255, 215, 213, 0.08);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 215, 213, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .menu-list-item:hover {
+            background: rgba(255, 215, 213, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .menu-list-item .item-name {
+            font-weight: 600;
+        }
+
+        .menu-list-item .item-price {
+            font-weight: 700;
+            opacity: 0.7;
         }
 
         /* ============================================================
@@ -1159,7 +1122,7 @@
                 align-items: center;
                 width: 100%;
             }
-            .contact-group .liquid-btn {
+            .contact-group .btn {
                 width: 100%;
                 justify-content: center;
             }
@@ -1198,8 +1161,8 @@
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
-            .liquid-btn {
-                padding: 14px 24px;
+            .btn {
+                padding: 12px 20px;
                 font-size: 0.88rem;
             }
             .navbar ul {
@@ -1215,8 +1178,11 @@
             .section-header h2 {
                 font-size: 1.8rem;
             }
-            .menu-card {
-                padding: 24px 20px;
+            .menu-card .menu-image {
+                height: 160px;
+            }
+            .menu-card .menu-content {
+                padding: 16px 18px 0;
             }
             .about-card,
             .info-card,
@@ -1286,6 +1252,9 @@
         </div>
         <ul>
             <li><a href="#menu">Menu</a></li>
+            <li><a href="#drinks">Drinks</a></li>
+            <li><a href="#cakes">Cakes</a></li>
+            <li><a href="#cookies">Cookies</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#reservation">Reserve</a></li>
             <li><a href="#location">Location</a></li>
@@ -1305,8 +1274,8 @@
             <h1 id="hero-title" class="reveal reveal-d1">Macarons<br />&amp; Coffee</h1>
             <p class="reveal reveal-d2">Handcrafted macarons, artisan coffee, and cozy mornings in the heart of Istanbul.</p>
             <div class="hero-actions reveal reveal-d3">
-                <a href="#menu" class="liquid-btn primary">Explore Menu</a>
-                <a href="#reservation" class="liquid-btn secondary">Reserve a Table</a>
+                <a href="#menu" class="btn btn-primary">Explore Menu</a>
+                <a href="#reservation" class="btn btn-secondary">Reserve a Table</a>
             </div>
         </div>
         <div class="hero-visual reveal reveal-d2">
@@ -1321,7 +1290,7 @@
     </section>
 
     <!-- ============================================================
-    MENU
+    TODAY'S MENU (with images)
     ============================================================ -->
     <section id="menu" aria-labelledby="menu-title">
         <div class="section-header reveal">
@@ -1330,65 +1299,140 @@
         </div>
 
         <div class="menu-grid">
+            <!-- Raspberry Coconut -->
             <div class="menu-card glass glass-sweep reveal reveal-d1">
-                <span class="menu-icon">🥥</span>
-                <h3>Raspberry Coconut</h3>
-                <p>Almond shell, coconut cream, fresh raspberry.</p>
-                <div class="price-row">
-                    <span class="price">₺85</span>
-                    <button class="liquid-btn small" aria-label="Order Raspberry Coconut">Order</button>
+                <img class="menu-image" src="https://picsum.photos/seed/raspberry/600/400" alt="Raspberry Coconut Macaron" loading="lazy" />
+                <div class="menu-content">
+                    <h3>Raspberry Coconut</h3>
+                    <p>Almond shell, coconut cream, fresh raspberry.</p>
+                    <div class="price-row">
+                        <span class="price">₺85</span>
+                        <button class="btn btn-primary btn-small" aria-label="Order Raspberry Coconut">Order</button>
+                    </div>
                 </div>
             </div>
 
+            <!-- Strawberry Rose -->
             <div class="menu-card glass glass-sweep reveal reveal-d2">
-                <span class="menu-icon">🍓</span>
-                <h3>Strawberry Rose</h3>
-                <p>White chocolate, rose water, fresh strawberries.</p>
-                <div class="price-row">
-                    <span class="price">₺89</span>
-                    <button class="liquid-btn small" aria-label="Order Strawberry Rose">Order</button>
+                <img class="menu-image" src="https://picsum.photos/seed/strawberry/600/400" alt="Strawberry Rose Macaron" loading="lazy" />
+                <div class="menu-content">
+                    <h3>Strawberry Rose</h3>
+                    <p>White chocolate, rose water, fresh strawberries.</p>
+                    <div class="price-row">
+                        <span class="price">₺89</span>
+                        <button class="btn btn-primary btn-small" aria-label="Order Strawberry Rose">Order</button>
+                    </div>
                 </div>
             </div>
 
+            <!-- Dark Chocolate -->
             <div class="menu-card glass glass-sweep reveal reveal-d3">
-                <span class="menu-icon">🍫</span>
-                <h3>Dark Chocolate</h3>
-                <p>70% cocoa, hazelnut filling, crispy shell.</p>
-                <div class="price-row">
-                    <span class="price">₺79</span>
-                    <button class="liquid-btn small" aria-label="Order Dark Chocolate">Order</button>
+                <img class="menu-image" src="https://picsum.photos/seed/chocolate/600/400" alt="Dark Chocolate Macaron" loading="lazy" />
+                <div class="menu-content">
+                    <h3>Dark Chocolate</h3>
+                    <p>70% cocoa, hazelnut filling, crispy shell.</p>
+                    <div class="price-row">
+                        <span class="price">₺79</span>
+                        <button class="btn btn-primary btn-small" aria-label="Order Dark Chocolate">Order</button>
+                    </div>
                 </div>
             </div>
 
+            <!-- Flat White -->
             <div class="menu-card glass glass-sweep reveal reveal-d2">
-                <span class="menu-icon">☕</span>
-                <h3>Flat White</h3>
-                <p>Silky espresso with velvety steamed milk.</p>
-                <div class="price-row">
-                    <span class="price">₺65</span>
-                    <button class="liquid-btn small" aria-label="Order Flat White">Order</button>
+                <img class="menu-image" src="https://picsum.photos/seed/flatwhite/600/400" alt="Flat White Coffee" loading="lazy" />
+                <div class="menu-content">
+                    <h3>Flat White</h3>
+                    <p>Silky espresso with velvety steamed milk.</p>
+                    <div class="price-row">
+                        <span class="price">₺65</span>
+                        <button class="btn btn-primary btn-small" aria-label="Order Flat White">Order</button>
+                    </div>
                 </div>
             </div>
 
+            <!-- Matcha Latte -->
             <div class="menu-card glass glass-sweep reveal reveal-d3">
-                <span class="menu-icon">🍵</span>
-                <h3>Matcha Latte</h3>
-                <p>Ceremonial matcha with oat milk &amp; honey.</p>
-                <div class="price-row">
-                    <span class="price">₺75</span>
-                    <button class="liquid-btn small" aria-label="Order Matcha Latte">Order</button>
+                <img class="menu-image" src="https://picsum.photos/seed/matcha/600/400" alt="Matcha Latte" loading="lazy" />
+                <div class="menu-content">
+                    <h3>Matcha Latte</h3>
+                    <p>Ceremonial matcha with oat milk &amp; honey.</p>
+                    <div class="price-row">
+                        <span class="price">₺75</span>
+                        <button class="btn btn-primary btn-small" aria-label="Order Matcha Latte">Order</button>
+                    </div>
                 </div>
             </div>
 
+            <!-- Almond Croissant -->
             <div class="menu-card glass glass-sweep reveal reveal-d4">
-                <span class="menu-icon">🥐</span>
-                <h3>Almond Croissant</h3>
-                <p>Butter pastry with almond cream and flakes.</p>
-                <div class="price-row">
-                    <span class="price">₺55</span>
-                    <button class="liquid-btn small" aria-label="Order Almond Croissant">Order</button>
+                <img class="menu-image" src="https://picsum.photos/seed/croissant/600/400" alt="Almond Croissant" loading="lazy" />
+                <div class="menu-content">
+                    <h3>Almond Croissant</h3>
+                    <p>Butter pastry with almond cream and flakes.</p>
+                    <div class="price-row">
+                        <span class="price">₺55</span>
+                        <button class="btn btn-primary btn-small" aria-label="Order Almond Croissant">Order</button>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    DRINKS (no images)
+    ============================================================ -->
+    <section id="drinks" aria-labelledby="drinks-title">
+        <div class="section-header reveal">
+            <h2 id="drinks-title">Drinks</h2>
+            <p>Freshly brewed, classic &amp; signature.</p>
+        </div>
+        <div class="menu-list reveal reveal-d1">
+            <div class="menu-list-item"><span class="item-name">Espresso</span><span class="item-price">₺35</span></div>
+            <div class="menu-list-item"><span class="item-name">Americano</span><span class="item-price">₺40</span></div>
+            <div class="menu-list-item"><span class="item-name">Cappuccino</span><span class="item-price">₺50</span></div>
+            <div class="menu-list-item"><span class="item-name">Latte</span><span class="item-price">₺55</span></div>
+            <div class="menu-list-item"><span class="item-name">Mocha</span><span class="item-price">₺60</span></div>
+            <div class="menu-list-item"><span class="item-name">Hot Chocolate</span><span class="item-price">₺55</span></div>
+            <div class="menu-list-item"><span class="item-name">Chai Latte</span><span class="item-price">₺50</span></div>
+            <div class="menu-list-item"><span class="item-name">Lemonade</span><span class="item-price">₺40</span></div>
+            <div class="menu-list-item"><span class="item-name">Iced Coffee</span><span class="item-price">₺50</span></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CAKES (no images)
+    ============================================================ -->
+    <section id="cakes" aria-labelledby="cakes-title">
+        <div class="section-header reveal">
+            <h2 id="cakes-title">Cakes</h2>
+            <p>Homemade, moist &amp; delicious.</p>
+        </div>
+        <div class="menu-list reveal reveal-d1">
+            <div class="menu-list-item"><span class="item-name">Classic Cheesecake</span><span class="item-price">₺90</span></div>
+            <div class="menu-list-item"><span class="item-name">Chocolate Fudge</span><span class="item-price">₺85</span></div>
+            <div class="menu-list-item"><span class="item-name">Carrot Cake</span><span class="item-price">₺80</span></div>
+            <div class="menu-list-item"><span class="item-name">Lemon Drizzle</span><span class="item-price">₺75</span></div>
+            <div class="menu-list-item"><span class="item-name">Red Velvet</span><span class="item-price">₺95</span></div>
+            <div class="menu-list-item"><span class="item-name">Tiramisu</span><span class="item-price">₺100</span></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    COOKIES (no images)
+    ============================================================ -->
+    <section id="cookies" aria-labelledby="cookies-title">
+        <div class="section-header reveal">
+            <h2 id="cookies-title">Cookies</h2>
+            <p>Freshly baked, soft &amp; chewy.</p>
+        </div>
+        <div class="menu-list reveal reveal-d1">
+            <div class="menu-list-item"><span class="item-name">Chocolate Chip</span><span class="item-price">₺30</span></div>
+            <div class="menu-list-item"><span class="item-name">Double Chocolate</span><span class="item-price">₺35</span></div>
+            <div class="menu-list-item"><span class="item-name">Oatmeal Raisin</span><span class="item-price">₺30</span></div>
+            <div class="menu-list-item"><span class="item-name">Peanut Butter</span><span class="item-price">₺35</span></div>
+            <div class="menu-list-item"><span class="item-name">Snickerdoodle</span><span class="item-price">₺30</span></div>
+            <div class="menu-list-item"><span class="item-name">Macadamia White Choc</span><span class="item-price">₺40</span></div>
         </div>
     </section>
 
@@ -1424,7 +1468,7 @@
                     <label for="res-message">Special Requests</label>
                     <textarea id="res-message" placeholder="Any allergies, celebrations, or preferences..."></textarea>
                 </div>
-                <button type="submit" class="liquid-btn primary form-submit">
+                <button type="submit" class="btn btn-primary form-submit">
                     Send via WhatsApp
                 </button>
             </form>
@@ -1474,9 +1518,9 @@
             <h2 id="contact-title">Contact</h2>
         </div>
         <div class="contact-group reveal reveal-d1">
-            <a href="tel:+905551234567" class="liquid-btn">Call Us</a>
-            <a href="#" class="liquid-btn">Instagram</a>
-            <a href="#" class="liquid-btn primary">Order Online</a>
+            <a href="tel:+905551234567" class="btn btn-primary">Call Us</a>
+            <a href="#" class="btn btn-secondary">Instagram</a>
+            <a href="#" class="btn btn-primary">Order Online</a>
         </div>
     </section>
 
@@ -1567,24 +1611,9 @@
             }
 
             // ——————————————————————————————————————————————
-            // 4. LIQUID GLASS MOUSE FOLLOW
+            // 4. BUTTON TACTILE FEEDBACK
             // ——————————————————————————————————————————————
-            const glassEls = document.querySelectorAll('.glass, .menu-card, .about-card, .info-card, .reservation-card, .hero-graphic .center-circle');
-
-            glassEls.forEach(function(el) {
-                el.addEventListener('mousemove', function(e) {
-                    const rect = this.getBoundingClientRect();
-                    const x = ((e.clientX - rect.left) / rect.width) * 100;
-                    const y = ((e.clientY - rect.top) / rect.height) * 100;
-                    this.style.setProperty('--glow-x', x + '%');
-                    this.style.setProperty('--glow-y', y + '%');
-                });
-            });
-
-            // ——————————————————————————————————————————————
-            // 5. BUTTON TACTILE FEEDBACK
-            // ——————————————————————————————————————————————
-            document.querySelectorAll('.liquid-btn').forEach(function(btn) {
+            document.querySelectorAll('.btn').forEach(function(btn) {
                 btn.addEventListener('mousedown', function() {
                     this.style.transition = 'transform 0.12s cubic-bezier(0.22, 1, 0.36, 1)';
                     this.style.transform = 'scale(0.95)';
@@ -1613,7 +1642,7 @@
             });
 
             // ——————————————————————————————————————————————
-            // 6. WHATSAPP RESERVATION FORM
+            // 5. WHATSAPP RESERVATION FORM
             // ——————————————————————————————————————————————
             const form = document.getElementById('reservation-form');
 
@@ -1658,7 +1687,7 @@
             });
 
             // ——————————————————————————————————————————————
-            // 7. FALLING STARS (✨)
+            // 6. FALLING STARS (✨)
             // ——————————————————————————————————————————————
             const starCount = 28;
             const starContainer = document.body;
@@ -1676,7 +1705,7 @@
             }
 
             // ——————————————————————————————————————————————
-            // 8. SMOOTH ANCHOR SCROLL
+            // 7. SMOOTH ANCHOR SCROLL
             // ——————————————————————————————————————————————
             document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
                 anchor.addEventListener('click', function(e) {
@@ -1697,7 +1726,7 @@
                 });
             });
 
-            console.log('🍮 Mina · Liquid Glass experience loaded');
+            console.log('🍮 Mina · Cafe website loaded');
         })();
     </script>
 
